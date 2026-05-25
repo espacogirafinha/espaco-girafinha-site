@@ -7,6 +7,7 @@ import Admin from "./pages/Admin";
 import LocalLanding from "./pages/LocalLanding";
 import GalleryPage from "./pages/GalleryPage";
 import FAQPage from "./pages/FAQPage";
+import ExternalServicesPage from "./pages/ExternalServicesPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/dicas/:slug" element={<BlogPost />} />
           <Route path="/galeria" element={<GalleryPage />} />
           <Route path="/perguntas-frequentes" element={<FAQPage />} />
+          <Route path="/servicos-externos" element={<ExternalServicesPage />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/:slug" element={<LocalLanding />} />
         </Routes>

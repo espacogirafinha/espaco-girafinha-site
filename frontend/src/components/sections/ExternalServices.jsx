@@ -1,8 +1,8 @@
 import React from 'react';
-import { MessageCircle, Palette, PartyPopper, Sparkles, Utensils } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Palette, PartyPopper, Sparkles, Utensils } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { useWhatsApp } from '../../hooks/useWhatsApp';
 
 const services = [
   {
@@ -30,10 +30,7 @@ const services = [
   },
 ];
 
-const ExternalServices = () => {
-  const { openWhatsApp } = useWhatsApp();
-
-  return (
+const ExternalServices = () => (
     <section id="servicos-externos" className="py-20 px-4 bg-gradient-to-b from-white to-teal-50">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-14">
@@ -70,21 +67,18 @@ const ExternalServices = () => {
 
         <div className="text-center mt-12">
           <Button
+            asChild
             size="lg"
             data-testid="external-services-cta"
-            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 rounded-full font-semibold"
-            onClick={() =>
-              openWhatsApp(
-                'Olá! Gostaria de pedir um orçamento para serviços externos do Espaço Girafinha.'
-              )
-            }>
-            <MessageCircle className="h-5 w-5" />
-            Pedir orçamento para serviços externos
+            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 rounded-full font-semibold">
+            <Link to="/servicos-externos">
+              Conhecer serviços externos
+              <ArrowRight className="h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>
     </section>
-  );
-};
+);
 
 export default ExternalServices;
