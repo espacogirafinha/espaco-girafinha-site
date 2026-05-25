@@ -45,6 +45,14 @@ const services = [
 
 const idealFor = ['Aniversários', 'Batizados', 'Festas em casa', 'Escolas', 'Empresas', 'Eventos ao ar livre'];
 
+const flexibleOptions = [
+  'Só catering',
+  'Só decoração',
+  'Mascote ou animação',
+  'Insuflável para a festa',
+  'Festa mais completa: decoração + catering + animação + insuflável',
+];
+
 const steps = [
   'Envia-nos a data, local e tipo de evento',
   'Preparamos uma proposta personalizada',
@@ -185,6 +193,41 @@ Obrigada!`;
                   </Card>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-20 bg-gradient-to-b from-teal-50 to-yellow-50">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] items-center">
+              <div>
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-teal-700 shadow-sm">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <h2 className="mt-5 text-3xl md:text-4xl font-bold text-gray-900">
+                  Escolha apenas o que precisa — ou combine tudo
+                </h2>
+                <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                  Pode contratar apenas catering, decoração, animação, insufláveis ou juntar vários serviços para criar
+                  uma festa mais completa. Preparamos uma proposta personalizada de acordo com o local, número de
+                  convidados, tema e tipo de evento.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {flexibleOptions.map((option, index) => (
+                  <Card
+                    key={option}
+                    className={`border-teal-100 bg-white ${
+                      index === flexibleOptions.length - 1 ? 'sm:col-span-2' : ''
+                    }`}>
+                    <CardContent className="p-5 flex items-center gap-3">
+                      <Check className="h-5 w-5 text-teal-600 flex-shrink-0" />
+                      <p className="font-semibold text-gray-800">{option}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
