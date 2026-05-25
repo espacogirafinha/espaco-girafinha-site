@@ -14,24 +14,32 @@ const services = [
     description:
       'Preparamos opções doces e salgadas para festas infantis, batizados, aniversários e eventos familiares, com apresentação cuidada e adaptada ao tipo de celebração.',
     icon: Utensils,
+    image: '/images/servicos-externos/catering-eventos.jpg',
+    imageAlt: 'Mesa de catering para eventos com fruta, doces e salgados preparados para festa',
   },
   {
     title: 'Decorações personalizadas',
     description:
       'Criamos decorações personalizadas à medida do tema escolhido, desde a mesa do bolo aos balões, fundos e pequenos detalhes visuais da festa.',
     icon: Palette,
+    image: '/images/servicos-externos/decoracoes-personalizadas.jpg',
+    imageAlt: 'Decoração personalizada com balões coloridos e cenário temático para festa infantil',
   },
   {
     title: 'Animação com mascotes',
     description:
       'Levamos animação infantil e mascotes para surpreender as crianças, criar momentos divertidos e tornar o evento mais memorável.',
     icon: PartyPopper,
+    image: '/images/servicos-externos/animacao-mascotes.jpg',
+    imageAlt: 'Mascote em festa infantil com insuflável e balões de modelar',
   },
   {
     title: 'Aluguer de insufláveis',
     description:
       'Disponibilizamos aluguer de insufláveis para eventos, com opções pensadas para o espaço disponível e para a idade das crianças.',
     icon: Sparkles,
+    image: '/images/servicos-externos/aluguer-insuflaveis.jpg',
+    imageAlt: 'Insuflável colorido montado no exterior para festa infantil',
   },
 ];
 
@@ -70,7 +78,7 @@ const ExternalServicesPage = () => {
       description:
         'Serviços para festas no Algarve: catering para eventos, decorações personalizadas, animação infantil com mascotes e aluguer de insufláveis.',
       path: '/servicos-externos',
-      image: '/gallery/festa-aniversario.jpg',
+      image: '/images/servicos-externos/decoracoes-personalizadas.jpg',
     });
   }, []);
 
@@ -144,8 +152,18 @@ const ExternalServicesPage = () => {
                 const Icon = service.icon;
 
                 return (
-                  <Card key={service.title} className="border-2 border-teal-100 hover:shadow-xl transition-shadow">
-                    <CardHeader>
+                  <Card
+                    key={service.title}
+                    className="overflow-hidden border-2 border-teal-100 hover:shadow-xl transition-shadow">
+                    <div className="aspect-[7/5] overflow-hidden bg-teal-50">
+                      <img
+                        src={service.image}
+                        alt={service.imageAlt}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <CardHeader className="p-6">
                       <div className="flex items-start gap-4">
                         <div className="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
                           <Icon className="h-7 w-7 text-teal-600" />
