@@ -4,6 +4,7 @@ import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Packages from '../components/sections/Packages';
 import FoodOptions from '../components/sections/FoodOptions';
+import ExternalServices from '../components/sections/ExternalServices';
 import WhyChooseUs from '../components/sections/WhyChooseUs';
 import Testimonials from '../components/sections/Testimonials';
 import InstagramFeed from '../components/sections/InstagramFeed';
@@ -48,6 +49,7 @@ const Home = () => {
       <About />
       <Packages packages={content.packages} />
       <FoodOptions />
+      <ExternalServices />
       <WhyChooseUs />
       <Testimonials testimonials={content.testimonials} />
       <ReservationForm packages={content.packages} />
