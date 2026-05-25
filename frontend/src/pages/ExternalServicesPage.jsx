@@ -96,8 +96,16 @@ const ExternalServicesPage = () => {
     url: `${siteUrl}/servicos-externos`,
   };
 
-  const whatsappText =
-    'Olá! Gostaria de pedir um orçamento para serviços externos do Espaço Girafinha.';
+  const whatsappText = `Olá! Gostaria de pedir um orçamento para serviços externos do Espaço Girafinha.
+
+Serviço pretendido: catering / decoração / animação com mascote / insuflável / vários serviços
+Data do evento:
+Localidade do evento:
+Nº aproximado de crianças/convidados:
+Já tem local para o evento?
+Tema ou ideia pretendida:
+
+Obrigada!`;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-yellow-50 to-green-50">
