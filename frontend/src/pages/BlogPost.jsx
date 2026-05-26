@@ -7,6 +7,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { contactInfo } from '../data/mock';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { setPageMeta } from '../lib/seo';
 
 const formatDate = (iso) => {
   try {
@@ -29,21 +30,18 @@ const BlogPost = () => {
   useEffect(() => {
     if (!post) return;
 
-    document.title = `${post.title} | Espaço Girafinha`;
+    setPageMeta({
+      title: `${post.title} | Espaço Girafinha`,
+      description: post.excerpt,
+      path: `/dicas/${post.slug}`,
+      image: post.image,
+      type: 'article',
+    });
 
     const setMeta = (selector, attr, value) => {
       const el = document.querySelector(selector);
       if (el) el.setAttribute(attr, value);
     };
-    setMeta('meta[name="description"]', 'content', post.excerpt);
-    setMeta('meta[property="og:title"]', 'content', post.title);
-    setMeta('meta[property="og:description"]', 'content', post.excerpt);
-    setMeta('meta[property="og:image"]', 'content', `https://espacogirafinha.pt${post.image}`);
-    setMeta('meta[property="og:url"]', 'content', `https://espacogirafinha.pt/dicas/${post.slug}`);
-    setMeta('meta[property="og:type"]', 'content', 'article');
-    setMeta('meta[name="twitter:title"]', 'content', post.title);
-    setMeta('meta[name="twitter:description"]', 'content', post.excerpt);
-    setMeta('meta[name="twitter:image"]', 'content', `https://espacogirafinha.pt${post.image}`);
 
     return () => {
       // Reset og:type back to website when leaving

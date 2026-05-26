@@ -35,7 +35,7 @@ const ExternalServices = () => (
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <p className="text-sm font-bold uppercase tracking-wide text-teal-600 mb-3">Serviços externos</p>
-          <h3 className="text-4xl font-bold text-gray-900 mb-5">Também levamos a magia até ao seu evento</h3>
+          <h2 className="text-4xl font-bold text-gray-900 mb-5">Também levamos a magia até ao seu evento</h2>
           <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
             Se já tem o local, nós tratamos dos detalhes: catering, decoração, animação e aluguer de insufláveis
             para tornar a festa ainda mais especial.

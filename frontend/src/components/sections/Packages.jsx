@@ -11,7 +11,7 @@ const Packages = ({ packages = [] }) => {
     <section id="pacotes" className="py-20 px-4 bg-gradient-to-b from-yellow-50 to-teal-50">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Pacotes de Festas</h3>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Pacotes de Festas</h2>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
           <p className="text-sm md:text-xl text-gray-600 mb-2 whitespace-nowrap">Escolha o pacote perfeito para a festa do seu filho</p>
           <p className="text-xs md:text-lg text-teal-600 font-bold animate-pulse mb-4 whitespace-nowrap">

@@ -6,7 +6,7 @@ const InstagramFeed = () => (
   <section className="py-20 px-4 bg-gradient-to-b from-white to-teal-50">
     <div className="container mx-auto max-w-4xl text-center">
       <div className="mb-8">
-        <h3 className="text-4xl font-bold text-gray-900 mb-4">Segue-nos no Instagram</h3>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Segue-nos no Instagram</h2>
         <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
         <p className="text-xl text-gray-600">Vê as festas mais recentes e inspira-te!</p>
       </div>

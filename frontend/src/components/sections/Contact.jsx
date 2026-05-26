@@ -11,7 +11,7 @@ const Contact = () => {
     <section id="contacto" className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16">
-          <h3 className="text-4xl font-bold text-gray-900 mb-4">Reserve a Festa dos Sonhos</h3>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Reserve a Festa dos Sonhos</h2>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-gray-600 mb-2">Pronto para criar memórias inesquecíveis?</p>
           <p className="text-lg text-teal-600 font-bold animate-pulse mb-2">

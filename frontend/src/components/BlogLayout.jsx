@@ -33,7 +33,7 @@ const BlogLayout = ({ children }) => {
             <Link to="/" className="flex items-center gap-3" data-testid="header-logo-link">
               <img src="/Logotipo girafinha  (1).png" alt="Espaço Girafinha" className="h-12 w-auto" />
               <div>
-                <h1 className="text-xl font-bold text-teal-600">Espaço Girafinha</h1>
+                <div className="text-xl font-bold text-teal-600">Espaço Girafinha</div>
                 <p className="text-xs text-gray-600">Silves, Algarve</p>
               </div>
             </Link>

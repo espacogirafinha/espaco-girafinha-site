@@ -7,6 +7,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { contactInfo } from '../data/mock';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { setPageMeta } from '../lib/seo';
 
 const formatDate = (iso) => {
   try {
@@ -25,23 +26,21 @@ const Blog = () => {
   const blogPosts = content.blog;
 
   useEffect(() => {
-    document.title = 'Dicas & Ideias para Festas Infantis | Espaço Girafinha';
-
     const desc =
       'Dicas práticas, ideias de temas e guias para organizar a festa de aniversário perfeita para o seu filho em Silves, Algarve.';
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', desc);
+    setPageMeta({
+      title: 'Dicas & Ideias para Festas Infantis | Espaço Girafinha',
+      description: desc,
+      path: '/dicas',
+      image: '/gallery/festa-aniversario.jpg',
+    });
 
     // Update Open Graph
     const setMeta = (selector, attr, value) => {
       const el = document.querySelector(selector);
       if (el) el.setAttribute(attr, value);
     };
-    setMeta('meta[property="og:title"]', 'content', 'Dicas & Ideias para Festas Infantis | Espaço Girafinha');
-    setMeta('meta[property="og:description"]', 'content', desc);
-    setMeta('meta[property="og:url"]', 'content', 'https://espacogirafinha.pt/dicas');
-    setMeta('meta[name="twitter:title"]', 'content', 'Dicas & Ideias para Festas Infantis | Espaço Girafinha');
-    setMeta('meta[name="twitter:description"]', 'content', desc);
+    setMeta('meta[property="og:type"]', 'content', 'website');
   }, []);
 
   const openWhatsApp = () => {

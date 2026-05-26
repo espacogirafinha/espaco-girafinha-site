@@ -9,7 +9,7 @@ const WhyChooseUs = () => (
   <section className="py-20 px-4 bg-gradient-to-b from-green-50 to-yellow-50">
     <div className="container mx-auto">
       <div className="text-center mb-16">
-        <h3 className="text-4xl font-bold text-gray-900 mb-4">Porque Escolher o Espaço Girafinha?</h3>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Porque Escolher o Espaço Girafinha?</h2>
         <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full"></div>
       </div>
 

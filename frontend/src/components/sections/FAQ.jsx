@@ -2,14 +2,15 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { useWhatsApp } from '../../hooks/useWhatsApp';
 
-const FAQ = ({ faqs = [] }) => {
+const FAQ = ({ faqs = [], headingLevel = 'h2' }) => {
   const { openWhatsApp } = useWhatsApp();
+  const Heading = headingLevel;
 
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-yellow-50 to-white">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <h3 className="text-4xl font-bold text-gray-900 mb-4">Perguntas Frequentes</h3>
+          <Heading className="text-4xl font-bold text-gray-900 mb-4">Perguntas Frequentes</Heading>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-gray-600">Esclarecemos as suas dúvidas</p>
         </div>

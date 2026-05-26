@@ -70,7 +70,7 @@ const ReservationForm = ({ packages = [] }) => {
           <div className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-sm font-bold text-teal-700">
             <CalendarDays className="h-4 w-4" /> Pré-reserva
           </div>
-          <h3 className="mt-4 text-4xl font-bold text-gray-900">Veja disponibilidade para a sua data</h3>
+          <h2 className="mt-4 text-4xl font-bold text-gray-900">Veja disponibilidade para a sua data</h2>
           <p className="mt-3 text-lg text-gray-600">Preencha os dados principais e respondemos com confirmação pelo WhatsApp.</p>
         </div>
 

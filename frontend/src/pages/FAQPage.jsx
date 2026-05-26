@@ -33,7 +33,7 @@ const FAQPage = () => {
   return (
     <BlogLayout>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <FAQ faqs={content.faqs} />
+      <FAQ faqs={content.faqs} headingLevel="h1" />
     </BlogLayout>
   );
 };

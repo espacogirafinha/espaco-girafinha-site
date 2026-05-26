@@ -27,7 +27,7 @@ const Testimonials = ({ testimonials = [] }) => {
     <section className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">O que dizem os pais</h3>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">O que dizem os pais</h2>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-gray-600">Experiências reais de famílias que confiaram em nós</p>
         </div>

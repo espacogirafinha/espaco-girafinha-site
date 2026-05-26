@@ -19,12 +19,10 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       <div className="container mx-auto relative z-10 text-center max-w-4xl">
-        <h2 className="hidden md:block text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          🎉 A festa perfeita para o seu filho — sem stress para si
-        </h2>
-        <h2 className="block md:hidden text-4xl font-bold text-white mb-4 leading-tight">
-          🎉 A Festa Perfeita <br />Sem Stress
-        </h2>
+        <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
+          <span className="hidden md:inline">🎉 A festa perfeita para o seu filho — sem stress para si</span>
+          <span className="md:hidden">🎉 A Festa Perfeita <br />Sem Stress</span>
+        </h1>
         <p className="hidden md:block text-xl md:text-2xl text-white mb-4 font-semibold">
           Espaço privado em Silves com decoração, animação e catering incluído
         </p>
