@@ -24,10 +24,10 @@ const Hero = () => {
           <span className="md:hidden">🎉 A Festa Perfeita <br />Sem Stress</span>
         </h1>
         <p className="hidden md:block text-xl md:text-2xl text-white mb-4 font-semibold">
-          Espaço privado em Silves com decoração, animação e catering incluído
+          Festas no nosso espaço em Silves ou serviços externos para o seu evento no Algarve
         </p>
         <p className="block md:hidden text-lg text-white mb-3 font-semibold">
-          Espaço privado em Silves
+          Festas em Silves ou serviços externos
         </p>
         <p className="text-lg md:text-xl text-yellow-300 font-bold mb-8">
           ⚠️ Fins de semana esgotam rápido

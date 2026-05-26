@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SiteHeader from '../components/sections/SiteHeader';
 import Hero from '../components/sections/Hero';
+import ServiceOptions from '../components/sections/ServiceOptions';
 import About from '../components/sections/About';
 import Packages from '../components/sections/Packages';
 import FoodOptions from '../components/sections/FoodOptions';
@@ -23,8 +24,8 @@ const Home = () => {
 
   // Reset SEO meta tags when returning to Home from blog pages
   useEffect(() => {
-    const homeDesc = 'Festas infantis inesquecíveis em Silves e Algarve. Espaço privado, decoração personalizada, animação e catering — pacotes desde 220€. Marque a sua festa pelo WhatsApp.';
-    const ogDesc = 'A festa perfeita para o seu filho — sem stress. Espaço privado em Silves com decoração, animação e catering incluído. Pacotes desde 220€.';
+    const homeDesc = 'Festas infantis inesquecíveis em Silves e serviços para festas no Algarve. Celebre no nosso espaço privado ou peça catering, decoração, mascotes e insufláveis para outro local.';
+    const ogDesc = 'Festas infantis em Silves e serviços externos para eventos no Algarve: espaço privado, decoração, animação, catering, mascotes e insufláveis.';
     setPageMeta({
       title: 'Espaço Girafinha | Festas Infantis em Silves, Algarve',
       description: homeDesc,
@@ -44,6 +45,7 @@ const Home = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, partyServiceSchema]) }} />
       <SiteHeader />
       <Hero />
+      <ServiceOptions />
       <About />
       <Packages packages={content.packages} />
       <FoodOptions />
