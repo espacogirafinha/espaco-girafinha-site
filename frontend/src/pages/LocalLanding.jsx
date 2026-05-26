@@ -9,7 +9,7 @@ import FAQ from '../components/sections/FAQ';
 import ReservationForm from '../components/sections/ReservationForm';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { useWhatsApp } from '../hooks/useWhatsApp';
+import { buildGeneralWhatsAppMessage, useWhatsApp } from '../hooks/useWhatsApp';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { localBusinessSchema, partyServiceSchema, setPageMeta, siteUrl } from '../lib/seo';
 
@@ -82,7 +82,7 @@ const LocalLanding = () => {
             <h1 className="mt-6 text-4xl md:text-6xl font-bold leading-tight">{page.h1}</h1>
             <p className="mt-5 text-lg md:text-2xl font-semibold text-white/95">{page.intro}</p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" onClick={() => openWhatsApp(`Olá! Gostaria de pedir orçamento para ${page.h1}.`)} className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-bold">
+              <Button size="lg" onClick={() => openWhatsApp(buildGeneralWhatsAppMessage(page.h1))} className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-bold">
                 <MessageCircle className="h-5 w-5 mr-2" /> Pedir orçamento
               </Button>
               <Link to="/#pacotes" className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-bold text-teal-700 shadow-xl hover:bg-gray-100">

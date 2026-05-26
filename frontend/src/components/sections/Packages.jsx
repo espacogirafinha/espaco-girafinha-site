@@ -2,7 +2,7 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { useWhatsApp } from '../../hooks/useWhatsApp';
+import { buildPackageWhatsAppMessage, useWhatsApp } from '../../hooks/useWhatsApp';
 
 const Packages = ({ packages = [] }) => {
   const { openWhatsApp } = useWhatsApp();
@@ -112,7 +112,7 @@ const Packages = ({ packages = [] }) => {
                   className={`w-full text-white rounded-full font-semibold py-6 ${
                     pkg.popular ? 'bg-teal-600 hover:bg-teal-700 shadow-lg' : 'bg-teal-500 hover:bg-teal-600'
                   }`}
-                  onClick={() => openWhatsApp()}>
+                  onClick={() => openWhatsApp(buildPackageWhatsAppMessage(pkg.name))}>
                   💬 Saber disponibilidade
                 </Button>
               </CardContent>

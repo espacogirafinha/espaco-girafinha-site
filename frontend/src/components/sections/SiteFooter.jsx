@@ -2,8 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, MessageCircle } from 'lucide-react';
 import { contactInfo } from '../../data/mock';
+import { useWhatsApp } from '../../hooks/useWhatsApp';
 
-const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => (
+const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => {
+  const { getWhatsAppUrl } = useWhatsApp();
+
+  return (
   <footer className="bg-gray-900 text-white py-12 px-4">
     <div className="container mx-auto text-center">
       <img src="/Logotipo girafinha  (1).png" alt="Espaço Girafinha" className="h-16 w-auto mx-auto mb-4" />
@@ -16,7 +20,7 @@ const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => (
         <a href={contactInfo.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="Facebook">
           <Facebook className="h-6 w-6" />
         </a>
-        <a href={`https://wa.me/${contactInfo.whatsapp.replace(/\+/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="WhatsApp">
+        <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="WhatsApp">
           <MessageCircle className="h-6 w-6" />
         </a>
       </div>
@@ -47,6 +51,7 @@ const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => (
       </p>
     </div>
   </footer>
-);
+  );
+};
 
 export default SiteFooter;

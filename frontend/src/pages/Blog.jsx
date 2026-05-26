@@ -5,8 +5,8 @@ import BlogLayout from '../components/BlogLayout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { contactInfo } from '../data/mock';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { useWhatsApp } from '../hooks/useWhatsApp';
 import { setPageMeta } from '../lib/seo';
 
 const formatDate = (iso) => {
@@ -23,6 +23,7 @@ const formatDate = (iso) => {
 
 const Blog = () => {
   const { content } = useSiteContent();
+  const { openWhatsApp } = useWhatsApp();
   const blogPosts = content.blog;
 
   useEffect(() => {
@@ -42,10 +43,6 @@ const Blog = () => {
     };
     setMeta('meta[property="og:type"]', 'content', 'website');
   }, []);
-
-  const openWhatsApp = () => {
-    window.open(`https://wa.me/${contactInfo.whatsapp.replace(/\+/g, '')}`, '_blank');
-  };
 
   // Blog JSON-LD for SEO
   const blogJsonLd = {

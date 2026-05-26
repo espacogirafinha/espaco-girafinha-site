@@ -36,6 +36,8 @@ const ReservationForm = ({ packages = [] }) => {
     form.event_time ? `Horário: ${form.event_time}` : '',
     form.package_name ? `Pacote: ${form.package_name}` : '',
     form.guests_count ? `Nº estimado de convidados: ${form.guests_count}` : '',
+    'Idade da criança:',
+    'Tema da festa:',
     form.message ? `Mensagem: ${form.message}` : '',
   ].filter(Boolean).join('\n');
 

@@ -5,8 +5,8 @@ import BlogLayout from '../components/BlogLayout';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { contactInfo } from '../data/mock';
 import { useSiteContent } from '../hooks/useSiteContent';
+import { buildGeneralWhatsAppMessage, useWhatsApp } from '../hooks/useWhatsApp';
 import { setPageMeta } from '../lib/seo';
 
 const formatDate = (iso) => {
@@ -26,6 +26,7 @@ const BlogPost = () => {
   const { content, loading } = useSiteContent();
   const post = content.blog.find((p) => p.slug === slug);
   const [copied, setCopied] = useState(false);
+  const { openWhatsApp } = useWhatsApp();
 
   useEffect(() => {
     if (!post) return;
@@ -54,12 +55,8 @@ const BlogPost = () => {
 
   const related = content.blog.filter((p) => p.slug !== slug).slice(0, 3);
 
-  const openWhatsApp = () => {
-    const msg = `Olá! Vi o artigo "${post.title}" no vosso blog e gostava de saber mais.`;
-    window.open(
-      `https://wa.me/${contactInfo.whatsapp.replace(/\+/g, '')}?text=${encodeURIComponent(msg)}`,
-      '_blank'
-    );
+  const openPostWhatsApp = () => {
+    openWhatsApp(buildGeneralWhatsAppMessage(`o artigo "${post.title}" e festas infantis`));
   };
 
   const postUrl = typeof window !== 'undefined'
@@ -226,7 +223,7 @@ const BlogPost = () => {
           </p>
           <Button
             size="lg"
-            onClick={openWhatsApp}
+            onClick={openPostWhatsApp}
             data-testid="post-cta-whatsapp"
             className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-base rounded-full font-bold shadow-lg">
             <MessageCircle className="h-5 w-5 mr-2" /> Pedir Orçamento

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Instagram, Facebook, MessageCircle, Menu, X } from 'lucide-react';
 import { contactInfo } from '../data/mock';
+import { useWhatsApp } from '../hooks/useWhatsApp';
 
 const navLinks = [
   { label: 'Sobre', to: '/#sobre', testId: 'nav-sobre' },
@@ -14,16 +15,12 @@ const navLinks = [
 const BlogLayout = ({ children }) => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const { openWhatsApp, getWhatsAppUrl } = useWhatsApp();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setOpen(false);
   }, [location.pathname]);
-
-  const openWhatsApp = () => {
-    const url = `https://wa.me/${contactInfo.whatsapp.replace(/\+/g, '')}`;
-    window.open(url, '_blank');
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-yellow-50 to-green-50 flex flex-col">
@@ -96,7 +93,7 @@ const BlogLayout = ({ children }) => {
             <a href={contactInfo.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="Facebook">
               <Facebook className="h-6 w-6" />
             </a>
-            <a href={`https://wa.me/${contactInfo.whatsapp.replace(/\+/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="WhatsApp">
+            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="WhatsApp">
               <MessageCircle className="h-6 w-6" />
             </a>
           </div>
