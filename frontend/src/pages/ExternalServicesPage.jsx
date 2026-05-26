@@ -15,7 +15,7 @@ const services = [
       'Preparamos opções doces e salgadas para festas infantis, batizados, aniversários e eventos familiares, com apresentação cuidada e adaptada ao tipo de celebração.',
     icon: Utensils,
     image: '/images/servicos-externos/catering-eventos.jpg',
-    imageAlt: 'Mesa de catering para eventos com fruta, doces e salgados preparados para festa',
+    imageAlt: 'Mesa de catering para eventos com salgados, sandes e petiscos preparados para festa',
   },
   {
     title: 'Decorações personalizadas',
@@ -31,7 +31,7 @@ const services = [
       'Levamos animação infantil e mascotes para surpreender as crianças, criar momentos divertidos e tornar o evento mais memorável.',
     icon: PartyPopper,
     image: '/images/servicos-externos/animacao-mascotes.jpg',
-    imageAlt: 'Mascote em festa infantil com insuflável e balões de modelar',
+    imageAlt: 'Mascote de animação infantil sentada com criança em espaço de festa',
   },
   {
     title: 'Aluguer de insufláveis',
@@ -171,7 +171,7 @@ Obrigada!`;
                   <Card
                     key={service.title}
                     className="overflow-hidden border-2 border-teal-100 hover:shadow-xl transition-shadow">
-                    <div className="aspect-[7/5] overflow-hidden bg-teal-50">
+                    <div className="aspect-[4/5] overflow-hidden bg-teal-50">
                       <img
                         src={service.image}
                         alt={service.imageAlt}
