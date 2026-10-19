@@ -13,9 +13,13 @@ const readChoice = () => {
 };
 
 const loadAnalytics = () => {
-  if (document.getElementById('girafinha-ga-script')) return;
+  // Uma alteração de preferências de «rejeitar» para «aceitar» deve
+  // reativar o Analytics mesmo que o script já esteja carregado.
+  window[`ga-disable-${GA_ID}`] = false;
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+  window.gtag('consent', 'update', { analytics_storage: 'granted' });
+  if (document.getElementById('girafinha-ga-script')) return;
   window.gtag('js', new Date());
   window.gtag('config', GA_ID, { anonymize_ip: true });
   const script = document.createElement('script');
@@ -26,9 +30,18 @@ const loadAnalytics = () => {
 };
 
 const stopAnalytics = () => {
+  window[`ga-disable-${GA_ID}`] = true;
   if (typeof window.gtag === 'function') {
     window.gtag('consent', 'update', { analytics_storage: 'denied' });
   }
+  // Limpa cookies first-party comuns do Analytics, caso tenham sido
+  // definidos após uma aceitação anterior neste domínio.
+  document.cookie.split(';').forEach(part => {
+    const name = part.trim().split('=')[0];
+    if (/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) {
+      document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax';
+    }
+  });
 };
 
 const CookieConsent = () => {
