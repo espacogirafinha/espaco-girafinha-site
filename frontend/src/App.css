@@ -1,49 +1,37 @@
-/* Global styles for Espaço Girafinha */
-
-* {
-    box-sizing: border-box;
+/* Visual foundation for Espaço Girafinha — October 2026 */
+:root {
+  --girafinha-ink: #29423D;
+  --girafinha-mint: #378E85;
+  --girafinha-pink: #DB6F91;
+  --girafinha-cream: #FCFAF6;
 }
 
-.App {
-    min-height: 100vh;
+* { box-sizing: border-box; }
+.App { min-height: 100vh; }
+
+button, a, input, textarea, select {
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-/* Smooth transitions for interactive elements */
-button, a, input, textarea {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid #DB6F91;
+  outline-offset: 3px;
 }
 
-button:hover, a:hover {
-    transform: translateY(-1px);
-}
+section[id] { scroll-margin-top: 92px; }
 
-button:active, a:active {
-    transform: translateY(0);
-}
+::selection { background: #F6DDE6; color: #29423D; }
 
-/* Animation delays */
-.delay-100 {
-    animation-delay: 100ms;
-}
+::-webkit-scrollbar { width: 10px; height: 8px; }
+::-webkit-scrollbar-track { background: #F2F6F2; }
+::-webkit-scrollbar-thumb { background: #B7D9D1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #87BFB3; }
 
-.delay-200 {
-    animation-delay: 200ms;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #FFB347;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #FFA500;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
