@@ -31,3 +31,14 @@ Autorizações das fotografias/testemunhos confirmadas pela gestão. A submissã
 ## Rollback
 - Código: rever PR, commit anterior de `main` e usar rollback da Vercel se necessário.
 - Conteúdos: snapshot JSON das coleções CMS anteriores. Rever e restaurar apenas registos necessários, em transação, sem apagar pedidos/reservas.
+
+
+## Revisão final de identidade e navegação — 19/10/2026
+- Confirmada consistência de packs, extras (sem preços na secção própria), serviços externos, vantagens e testemunhos.
+- Ajustadas páginas locais (landing pages SEO): hero/benefícios mais compactos no telemóvel, botões na paleta aprovada e modais de privacidade/termos disponíveis.
+- Ajustado Blog e páginas de artigos para identidade Girafinha, retirando gradientes e botões com verde antigo.
+- Modais legais reestilizados sem alterar cláusulas substantivas.
+- Corrigido o tratamento de alteração do consentimento Analytics (aceitar após rejeição / rejeitar após aceitação, com bloqueio e limpeza de cookies first-party comuns).
+- Corrigidas classes responsivas redundantes no hero e packs; botão «Ler mais» em testemunhos mais sensível ao tamanho reduzido do cartão.
+- O CMS público foi novamente verificado: 3 packs, 8 FAQ, 15 imagens e 5 testemunhos. **Não foi alterado**; sincronização com 4 packs e 16 FAQ continua pendente de cutover.
+- Não houve testes automáticos de interação em browser nesta revisão; a compilação de preview não substitui esse teste.
