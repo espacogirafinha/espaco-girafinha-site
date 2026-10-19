@@ -27,9 +27,9 @@ const Testimonials = ({ testimonials = [] }) => {
     <section className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">O que dizem os pais</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#29423D] mb-4">O que dizem os pais</h2>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-gray-600">Experiências reais de famílias que confiaram em nós</p>
+          <p className="text-xl text-gray-600">Conheça as experiências partilhadas pelas famílias</p>
         </div>
 
         <div className="relative group/testimonials">
@@ -50,13 +50,13 @@ const Testimonials = ({ testimonials = [] }) => {
             <div className="flex gap-6 px-4 md:px-0">
               {testimonials.map((t, index) => (
                 <div key={t.id} className="flex-none w-[90vw] sm:w-[70vw] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-                  <Card className={`bg-white border-2 hover:shadow-2xl transition-all duration-500 h-full ${
-                    index === current ? 'border-teal-300 shadow-xl scale-105' : 'border-gray-100 hover:border-teal-200'
+                  <Card className={`bg-white border hover:shadow-md transition-all duration-300 h-full ${
+                    index === current ? 'border-[#C6E5DB] shadow-sm' : 'border-[#E2EDE8] hover:border-[#C6E5DB]'
                   }`}>
                     <CardHeader>
                       <div className="flex gap-1 mb-4">
                         {[...Array(t.rating ?? 5)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 fill-teal-500" viewBox="0 0 20 20">
+                          <svg key={i} className="w-5 h-5 fill-[#4E968B]" viewBox="0 0 20 20">
                             <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                           </svg>
                         ))}
@@ -82,7 +82,7 @@ const Testimonials = ({ testimonials = [] }) => {
                 key={index}
                 onClick={() => setCurrent(index)}
                 className={`transition-all duration-300 rounded-full ${
-                  index === current ? 'w-8 h-3 bg-teal-600' : 'w-3 h-3 bg-gray-300 hover:bg-teal-400'
+                  index === current ? 'w-8 h-3 bg-[#378E85]' : 'w-3 h-3 bg-gray-300 hover:bg-teal-400'
                 }`}
                 aria-label={`Ir para avaliação ${index + 1}`}
               />
@@ -96,7 +96,7 @@ const Testimonials = ({ testimonials = [] }) => {
             href="https://share.google/WJZdIImo9oEzcB9ny"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-teal-50 hover:bg-teal-100 rounded-full px-6 py-3 border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
+            className="inline-flex items-center gap-3 bg-[#F0F8F4] hover:bg-[#E7F3EE] rounded-full px-6 py-3 border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
             <div className="flex gap-1">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-5 h-5 fill-teal-500" viewBox="0 0 20 20">
@@ -104,7 +104,7 @@ const Testimonials = ({ testimonials = [] }) => {
                 </svg>
               ))}
             </div>
-            <span className="text-gray-800 font-semibold">5.0 • 17 Avaliações no Google</span>
+            <span className="text-gray-800 font-semibold">Consultar avaliações no Google</span>
           </a>
           <p className="text-sm text-gray-600 mt-3">⭐ Lê mais avaliações no Google Reviews</p>
         </div>
