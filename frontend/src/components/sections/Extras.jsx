@@ -51,26 +51,26 @@ const categories = [
 const Extras = () => {
   const { openWhatsApp } = useWhatsApp();
   return (
-    <section id="extras" className="bg-[#FCFAF6] px-4 py-20 md:py-24">
+    <section id="extras" className="bg-[#FCFAF6] px-4 py-12 md:py-20">
       <div className="container mx-auto max-w-6xl">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.17em] text-[#458C82]">Personalize a sua festa</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#29423D] md:text-4xl">Pequenos extras, grandes sorrisos.</h2>
-          <p className="mt-4 text-base leading-relaxed text-[#61766D]">
+        <div className="mx-auto mb-7 max-w-3xl text-center md:mb-12">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] md:text-sm text-[#458C82]">Personalize a sua festa</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl text-[#29423D] md:text-4xl">Pequenos extras, grandes sorrisos.</h2>
+          <p className="mt-3 text-sm leading-relaxed md:mt-4 md:text-base text-[#61766D]">
             Escolha os detalhes que fazem sentido para a sua festa. Conheça as opções de animação, bolos, doces e catering adicional. Enviamos os preços e disponibilidade por mensagem privada.
           </p>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2 md:gap-5">
           {categories.map((category) => {
             const Icon = category.icon;
             return (
-              <article key={category.name} className="rounded-[1.8rem] border border-[#E2ECE6] bg-white p-6 shadow-sm md:p-8">
-                <div className={'flex h-12 w-12 items-center justify-center rounded-2xl text-[#43877F] ' + category.accent}>
+              <article key={category.name} className="rounded-[1.5rem] border border-[#E2ECE6] bg-white p-5 shadow-sm md:rounded-[1.8rem] md:p-8">
+                <div className={'flex h-10 w-10 items-center justify-center rounded-xl md:h-12 md:w-12 text-[#43877F] ' + category.accent}>
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 text-2xl font-bold text-[#29423D]">{category.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#6C7F76]">{category.description}</p>
-                <ul className="mt-6 space-y-3 border-t border-[#E9EFEB] pt-5">
+                <h3 className="mt-3 text-xl font-bold md:mt-5 md:text-2xl text-[#29423D]">{category.name}</h3>
+                <p className="mt-1 text-sm leading-relaxed md:mt-2 text-[#6C7F76]">{category.description}</p>
+                <ul className="mt-4 space-y-2 border-t border-[#E9EFEB] pt-3 md:mt-6 md:space-y-3 md:pt-5">
                   {category.items.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-[#506A5E]">
                       <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#73AAA0]" />
@@ -81,7 +81,7 @@ const Extras = () => {
                 <button
                   type="button"
                   onClick={() => openWhatsApp('Olá! Gostaria de saber os preços e disponibilidade dos extras de ' + category.name + ' para uma festa no Espaço Girafinha.\nData pretendida:\nPack escolhido:')}
-                  className="mt-7 inline-flex items-center gap-2 font-bold text-[#39847A] hover:underline"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-bold md:mt-7 md:text-base text-[#39847A] hover:underline"
                 >
                   Pedir preços por mensagem <ArrowRight className="h-4 w-4" />
                 </button>
@@ -89,10 +89,10 @@ const Extras = () => {
             );
           })}
         </div>
-        <p className="mt-7 text-center text-sm leading-relaxed text-[#718278]">
+        <p className="mt-5 text-center text-xs leading-relaxed md:mt-7 md:text-sm text-[#718278]">
           Extras sujeitos a disponibilidade. Quantidades, tamanhos e serviços adicionais mediante consulta privada. Decorações especiais podem exigir orçamento personalizado.
         </p>
-        <p className="mt-3 text-center text-xs text-[#718278]">
+        <p className="mt-2 text-center text-xs text-[#718278]">
           A oferta promocional do bolo no Pack Premium é exclusiva para festas realizadas até 31/12/2026.
         </p>
       </div>
