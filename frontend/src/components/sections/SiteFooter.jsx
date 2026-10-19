@@ -1,56 +1,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, MessageCircle } from 'lucide-react';
+import { Facebook, Instagram, MapPin, MessageCircle } from 'lucide-react';
 import { contactInfo } from '../../data/mock';
 import { useWhatsApp } from '../../hooks/useWhatsApp';
 
 const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => {
   const { getWhatsAppUrl } = useWhatsApp();
-
   return (
-  <footer className="bg-gray-900 text-white py-12 px-4">
-    <div className="container mx-auto text-center">
-      <img src="/Logotipo girafinha  (1).png" alt="Espaço Girafinha" className="h-16 w-auto mx-auto mb-4" />
-      <h4 className="text-2xl font-bold mb-2">Espaço Girafinha</h4>
-      <p className="text-gray-400 mb-6">Festas Infantis em Silves, Algarve</p>
-      <div className="flex justify-center gap-6 mb-6">
-        <a href={`https://instagram.com/${contactInfo.instagram}`} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="Instagram">
-          <Instagram className="h-6 w-6" />
-        </a>
-        <a href={contactInfo.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="Facebook">
-          <Facebook className="h-6 w-6" />
-        </a>
-        <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors" aria-label="WhatsApp">
-          <MessageCircle className="h-6 w-6" />
-        </a>
+    <footer className="bg-[#29443E] px-4 py-14 text-white">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid gap-10 border-b border-white/15 pb-10 md:grid-cols-[1.1fr_0.8fr_1fr]">
+          <div>
+            <img src="/Logotipo girafinha  (1).png" alt="Logótipo do Espaço Girafinha" className="h-16 w-auto" />
+            <h2 className="mt-3 text-xl font-bold">Espaço Girafinha</h2>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-[#D5E8DF]">Festas infantis em Silves. Momentos felizes para as crianças, tranquilidade para os pais.</p>
+            <div className="mt-5 flex gap-3">
+              <a href={`https://instagram.com/${contactInfo.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"><Instagram className="h-5 w-5" /></a>
+              <a href={contactInfo.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"><Facebook className="h-5 w-5" /></a>
+              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"><MessageCircle className="h-5 w-5" /></a>
+            </div>
+          </div>
+          <nav aria-label="Navegação do rodapé">
+            <h3 className="mb-4 font-bold">Explore</h3>
+            <div className="grid gap-3 text-sm text-[#D5E8DF]">
+              <a href="/#pacotes" className="hover:text-white">Packs de festas</a>
+              <Link to="/servicos-externos" className="hover:text-white">Serviços externos</Link>
+              <Link to="/galeria" className="hover:text-white">Galeria</Link>
+              <Link to="/perguntas-frequentes" className="hover:text-white">Perguntas frequentes</Link>
+              <Link to="/dicas" className="hover:text-white" data-testid="footer-blog-link">Dicas e ideias</Link>
+            </div>
+          </nav>
+          <div>
+            <h3 className="mb-4 font-bold">Estamos em Silves</h3>
+            <p className="flex items-start gap-2 text-sm leading-relaxed text-[#D5E8DF]"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /> Rua Cândido dos Reis, n.º 1, Loja A, 8300-126 Silves</p>
+            <a href={`tel:${contactInfo.phone}`} className="mt-4 block text-sm font-semibold text-white">{contactInfo.phone}</a>
+            <a href={getWhatsAppUrl()} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#D9ECE4] px-5 py-3 text-sm font-bold text-[#2B635B] hover:bg-white" target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp <MessageCircle className="h-4 w-4" /></a>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 pt-6 text-xs text-[#C9DED4] md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Espaço Girafinha. Todos os direitos reservados.</p>
+          <div className="flex flex-wrap gap-4">
+            {onOpenPrivacy && <button type="button" onClick={onOpenPrivacy} className="hover:text-white">Política de Privacidade</button>}
+            {onOpenTerms && <button type="button" onClick={onOpenTerms} className="hover:text-white">Termos e Condições</button>}
+            <button type="button" onClick={() => window.dispatchEvent(new Event('girafinha:cookie-preferences'))} className="hover:text-white">Preferências de cookies</button>
+            <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener noreferrer" className="hover:text-white">Livro de Reclamações</a>
+          </div>
+        </div>
       </div>
-
-      <div className="flex flex-wrap justify-center gap-4 mb-4 text-sm">
-        <Link to="/dicas" className="text-gray-400 hover:text-white transition-colors underline" data-testid="footer-blog-link">
-          Dicas & Ideias
-        </Link>
-        <Link to="/galeria" className="text-gray-400 hover:text-white transition-colors underline">
-          Galeria
-        </Link>
-        <Link to="/perguntas-frequentes" className="text-gray-400 hover:text-white transition-colors underline">
-          Perguntas Frequentes
-        </Link>
-        <button onClick={onOpenPrivacy} className="text-gray-400 hover:text-white transition-colors underline">
-          Política de Privacidade
-        </button>
-        <button onClick={onOpenTerms} className="text-gray-400 hover:text-white transition-colors underline">
-          Termos e Condições
-        </button>
-        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors underline">
-          Livro de Reclamações
-        </a>
-      </div>
-
-      <p className="text-gray-500 text-sm">
-        © {new Date().getFullYear()} Espaço Girafinha. Todos os direitos reservados.
-      </p>
-    </div>
-  </footer>
+    </footer>
   );
 };
 

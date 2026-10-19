@@ -1,112 +1,103 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { Card, CardContent, CardHeader } from '../ui/card';
+import React, { useState } from 'react';
+import { ArrowUpRight, ChevronDown, Quote, Star } from 'lucide-react';
 
 const Testimonials = ({ testimonials = [] }) => {
-  const [current, setCurrent] = useState(0);
-  const total = testimonials.length;
+  const [showAll, setShowAll] = useState(false);
+  const [expanded, setExpanded] = useState({});
 
-  // Auto-slide every 5s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (total ? (prev + 1) % total : 0));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [total]);
+  if (!testimonials.length) return null;
 
-  // Scroll carousel when index changes
-  useEffect(() => {
-    const carousel = document.getElementById('testimonials-carousel');
-    if (carousel && total) {
-      const cardWidth = carousel.scrollWidth / total;
-      carousel.scrollTo({ left: cardWidth * current, behavior: 'smooth' });
-    }
-  }, [current, total]);
+  const visible = showAll ? testimonials : testimonials.slice(0, 4);
 
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">O que dizem os pais</h2>
-          <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-gray-600">Experiências reais de famílias que confiaram em nós</p>
+    <section className="bg-white px-4 py-12 md:py-20" aria-labelledby="testemunhos-titulo">
+      <div className="container mx-auto max-w-6xl">
+        <div className="mb-7 text-center md:mb-12">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-[#458C82] md:mb-3 md:text-sm">
+            Quem já celebrou connosco
+          </p>
+          <h2 id="testemunhos-titulo" className="text-2xl font-bold tracking-tight text-[#29423D] sm:text-3xl md:text-4xl">
+            O que dizem os pais
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#647971] md:mt-4 md:text-base">
+            Experiências partilhadas pelas famílias que passaram pela Girafinha.
+          </p>
         </div>
 
-        <div className="relative group/testimonials">
-          <button
-            onClick={() => setCurrent((p) => (p - 1 + total) % total)}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover/testimonials:opacity-100 transition-opacity duration-300"
-            aria-label="Anterior">
-            <ChevronLeft className="w-6 h-6 text-teal-600" />
-          </button>
-          <button
-            onClick={() => setCurrent((p) => (p + 1) % total)}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 opacity-0 group-hover/testimonials:opacity-100 transition-opacity duration-300"
-            aria-label="Próximo">
-            <ChevronRight className="w-6 h-6 text-teal-600" />
-          </button>
+        <div className="grid grid-cols-2 items-start gap-3 md:gap-5 lg:grid-cols-4">
+          {visible.map((t, index) => {
+            const key = String(t.id ?? index);
+            const full = Boolean(expanded[key]);
+            const rating = Number.isFinite(Number(t.rating)) ? Math.min(5, Math.max(0, Math.floor(Number(t.rating)))) : 0;
+            const text = String(t.text || '');
+            const mayNeedExpand = text.length > 48;
 
-          <div id="testimonials-carousel" className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-6 px-4 md:px-0">
-              {testimonials.map((t, index) => (
-                <div key={t.id} className="flex-none w-[90vw] sm:w-[70vw] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
-                  <Card className={`bg-white border-2 hover:shadow-2xl transition-all duration-500 h-full ${
-                    index === current ? 'border-teal-300 shadow-xl scale-105' : 'border-gray-100 hover:border-teal-200'
-                  }`}>
-                    <CardHeader>
-                      <div className="flex gap-1 mb-4">
-                        {[...Array(t.rating ?? 5)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 fill-teal-500" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <Quote className="h-8 w-8 text-teal-200 mb-2" />
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-700 leading-relaxed mb-6 italic">"{t.text}"</p>
-                      <div className="border-t border-gray-200 pt-4">
-                        <p className="font-bold text-gray-900">{t.author}</p>
-                        <p className="text-sm text-gray-600">{t.location}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+            return (
+              <article
+                key={key}
+                className="min-w-0 rounded-[1.5rem] border border-[#DCEAE4] bg-[#FCFDFC] p-3.5 shadow-sm sm:p-5 md:rounded-[1.8rem] md:p-6"
+              >
+                <div className="flex items-center justify-between gap-1">
+                  {rating > 0 && (
+                    <div className="flex gap-0.5" aria-label={`${rating} de 5 estrelas`}>
+                      {Array.from({ length: rating }, (_, star) => (
+                        <Star key={star} aria-hidden="true" className="h-3 w-3 fill-[#58A196] text-[#58A196] sm:h-3.5 sm:w-3.5" />
+                      ))}
+                    </div>
+                  )}
+                  <Quote className="ml-auto h-4 w-4 shrink-0 text-[#B2DCD1]" aria-hidden="true" />
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === current ? 'w-8 h-3 bg-teal-600' : 'w-3 h-3 bg-gray-300 hover:bg-teal-400'
-                }`}
-                aria-label={`Ir para avaliação ${index + 1}`}
-              />
-            ))}
-          </div>
+                <p
+                  className="mt-3 text-xs italic leading-relaxed text-[#50665D] sm:text-sm"
+                  style={!full ? { display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical', overflow: 'hidden' } : undefined}
+                >
+                  “{text}”
+                </p>
+
+                {mayNeedExpand && (
+                  <button
+                    type="button"
+                    aria-expanded={full}
+                    onClick={() => setExpanded(current => ({ ...current, [key]: !current[key] }))}
+                    className="mt-2 inline-flex min-h-7 items-center gap-1 text-xs font-semibold text-[#39887E] underline-offset-2 hover:underline"
+                  >
+                    {full ? 'Ler menos' : 'Ler mais'}
+                  </button>
+                )}
+
+                <div className="mt-3 border-t border-[#E4EEE8] pt-3">
+                  <p className="text-xs font-bold leading-snug text-[#29423D] md:text-sm">{t.author}</p>
+                  {t.location && <p className="mt-0.5 text-[11px] text-[#74857B] md:text-xs">{t.location}</p>}
+                </div>
+              </article>
+            );
+          })}
         </div>
 
-        {/* Google Reviews CTA */}
-        <div className="text-center mt-12">
+        {testimonials.length > 4 && (
+          <div className="mt-5 text-center md:mt-7">
+            <button
+              type="button"
+              aria-expanded={showAll}
+              onClick={() => setShowAll(value => !value)}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#BEDFD5] bg-white px-5 py-2.5 text-sm font-semibold text-[#367E74] transition hover:bg-[#EFF8F3]"
+            >
+              {showAll ? 'Mostrar menos testemunhos' : 'Ver mais testemunhos'}
+              <ChevronDown className={`h-4 w-4 transition-transform ${showAll ? 'rotate-180' : ''}`} aria-hidden="true" />
+            </button>
+          </div>
+        )}
+
+        <div className="mt-5 text-center md:mt-8">
           <a
             href="https://share.google/WJZdIImo9oEzcB9ny"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-teal-50 hover:bg-teal-100 rounded-full px-6 py-3 border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 hover:shadow-lg">
-            <div className="flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-5 h-5 fill-teal-500" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-gray-800 font-semibold">5.0 • 17 Avaliações no Google</span>
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#E9F6F1] px-5 py-2.5 text-sm font-semibold text-[#347F75] transition hover:bg-[#DAEEE6]"
+          >
+            Ver avaliações no Google <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
-          <p className="text-sm text-gray-600 mt-3">⭐ Lê mais avaliações no Google Reviews</p>
         </div>
       </div>
     </section>

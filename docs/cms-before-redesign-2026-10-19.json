@@ -1,0 +1,178 @@
+{
+  "snapshot_date": "2026-10-19",
+  "project_id": "sfdbswqyqgcdxwsgyfur",
+  "source": "CMS antes da reformulação, leitura apenas",
+  "collections": {
+    "packages": [
+      {
+        "id": 1,
+        "name": "Pack Essencial",
+        "notes": [
+          "É permitido trazer comida, decoração e bolo de aniversário",
+          "Reserva com pagamento de 20% do valor total",
+          "Restante pagamento no dia do evento"
+        ],
+        "price": "250€",
+        "extras": [
+          "Hora extra: +75€",
+          "Mascote: 80€ p/hora"
+        ],
+        "popular": false,
+        "includes": [
+          "Utilização exclusiva do espaço",
+          "Playground com escorregas e piscina de bolas, brinquedos de imitação e outras atividades.",
+          "Monitor/animador",
+          "Lanche para até 20 crianças"
+        ],
+        "schedules": [
+          "Manhã: 10:00h – 12:30h",
+          "Tarde: 13:30h – 16:00h",
+          "Tarde: 17:00h - 19:30h"
+        ],
+        "created_at": "2026-05-13T10:07:02.67201+00:00",
+        "sort_order": 1,
+        "updated_at": "2026-06-09T17:45:22.253757+00:00",
+        "is_promotion": true,
+        "is_published": true,
+        "original_price": ""
+      },
+      {
+        "id": 2,
+        "name": "Pack com Decoração",
+        "notes": [
+          "É permitido trazer comida e bolo de aniversário",
+          "Reserva com pagamento de 20% do valor total",
+          "Restante pagamento no dia do evento"
+        ],
+        "price": "400€",
+        "extras": [
+          "Hora extra: +75€"
+        ],
+        "popular": true,
+        "includes": [
+          "Utilização exclusiva do espaço",
+          "Insuflável, trampolim, piscina de bolas, brinquedos de imitação e outras atividades",
+          "Monitor/animador",
+          "Lanche para até 20 crianças",
+          "Decoração personalizada (tema à escolha)"
+        ],
+        "schedules": [
+          "Manhã: 10h – 13h",
+          "Tarde: 16h – 19h"
+        ],
+        "created_at": "2026-05-13T10:07:02.67201+00:00",
+        "sort_order": 2,
+        "updated_at": "2026-06-06T20:53:53.640519+00:00",
+        "is_promotion": true,
+        "is_published": true,
+        "original_price": ""
+      },
+      {
+        "id": 3,
+        "name": "Pack Completo",
+        "notes": [
+          "É permitido trazer comida e bolo de aniversário",
+          "Reserva com pagamento de 20% do valor total",
+          "Restante pagamento no dia do evento"
+        ],
+        "price": "550€",
+        "extras": [
+          "Bolo de aniversário (opcional): +50€"
+        ],
+        "popular": false,
+        "includes": [
+          "Utilização exclusiva do espaço",
+          "Insuflável, trampolim, piscina de bolas, brinquedos de imitação e outras atividades",
+          "Monitor/animador",
+          "Decoração personalizada (tema à escolha)",
+          "Lanche para até 20 crianças",
+          "Catering para até 30 adultos"
+        ],
+        "schedules": [
+          "Manhã: 10h – 13h",
+          "Tarde: 16h – 19h"
+        ],
+        "created_at": "2026-05-13T10:07:02.67201+00:00",
+        "sort_order": 3,
+        "updated_at": "2026-06-03T23:13:05.929154+00:00",
+        "is_promotion": true,
+        "is_published": true,
+        "original_price": ""
+      }
+    ],
+    "faqs": [
+      {
+        "id": 1,
+        "answer": "O nosso espaço é perfeito para crianças desde 1 ano até aos 10 anos.",
+        "question": "Qual a idade ideal das crianças?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 1,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 2,
+        "answer": "Pode trazer sempre o que quiser, desde o bolo e comida à decoração. Mas o nosso objetivo é deixar isso connosco para que não tenha trabalho e não gaste dinheiro desnecessário.",
+        "question": "Posso trazer a minha própria decoração?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 2,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 3,
+        "answer": "Recomendamos reservar com pelo menos 5 semanas de antecedência.",
+        "question": "Com quanto tempo de antecedência devo reservar?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 3,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 4,
+        "answer": "Claro! Agenda uma visita sem compromisso pelo WhatsApp.",
+        "question": "Posso visitar o espaço antes de reservar?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 4,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 5,
+        "answer": "O espaço tem capacidade para 50 pessoas (adultos e crianças).",
+        "question": "Quantas pessoas podem ficar no espaço?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 5,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 6,
+        "answer": "O depósito de reserva de data não é reembolsável.",
+        "question": "O que acontece se precisar cancelar?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 6,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 7,
+        "answer": "Sim, temos ar condicionado em todo o espaço.",
+        "question": "O espaço tem ar condicionado?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 7,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      },
+      {
+        "id": 8,
+        "answer": "Sim, só terá que avisar antes.",
+        "question": "Posso trazer animação externa (palhaços, mágicos)?",
+        "created_at": "2026-05-13T09:56:23.200366+00:00",
+        "sort_order": 8,
+        "updated_at": "2026-05-13T09:56:23.200366+00:00",
+        "is_published": true
+      }
+    ]
+  }
+}

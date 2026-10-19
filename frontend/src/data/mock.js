@@ -1,123 +1,88 @@
-// Mock data para Espaço Girafinha
+// Conteúdo de referência: Packs Girafinha PT-2, outubro de 2026.
+// A publicação pode utilizar valores do CMS Supabase; sincronizar também cms_packages e cms_faqs.
 
 export const packages = [
   {
     id: 1,
-    name: "Pack Simples",
-    price: "220€",
-    originalPrice: "250€",
+    name: 'Pack Essencial — manhã',
+    price: '200 €',
+    originalPrice: '250 €',
     isPromotion: true,
-    schedules: [
-      "Manhã: 10h – 13h",
-      "Tarde: 16h – 19h"
-    ],
+    schedules: ['2h30 · 10h30 às 13h00'],
     includes: [
-      "Utilização exclusiva do espaço",
-      "Insuflável, trampolim, piscina de bolas, brinquedos de imitação e outras atividades",
-      "Monitor/animador",
-      "Lanche para até 20 crianças"
+      'Utilização exclusiva do espaço',
+      'Playground interior com piscina de bolas, obstáculos, escorregas e baloiço',
+      'Monitor/animador',
+      'Lanche para até 20 crianças'
     ],
-    extras: [
-      "Hora extra: +75€"
-    ],
-    notes: [
-      "É permitido trazer comida, decoração e bolo de aniversário",
-      "Reserva com pagamento de 20% do valor total",
-      "Restante pagamento no dia do evento"
-    ]
+    extras: ['Hora extra: +70 €'],
+    notes: ['É permitido trazer comida, decoração e bolo de aniversário', 'Campanha válida para festas realizadas até 31/12/2026']
   },
   {
     id: 2,
-    name: "Pack com Decoração",
-    price: "350€",
-    originalPrice: "380€",
-    isPromotion: true,
-    schedules: [
-      "Manhã: 10h – 13h",
-      "Tarde: 16h – 19h"
-    ],
+    name: 'Pack Essencial — tarde',
+    price: '250 €',
+    isPromotion: false,
+    schedules: ['2h30 · 14h00 às 16h30 ou 17h00 às 19h30'],
     includes: [
-      "Utilização exclusiva do espaço",
-      "Insuflável, trampolim, piscina de bolas, brinquedos de imitação e outras atividades",
-      "Monitor/animador",
-      "Lanche para até 20 crianças",
-      "Decoração personalizada (tema à escolha)"
+      'Utilização exclusiva do espaço',
+      'Playground interior com piscina de bolas, obstáculos, escorregas e baloiço',
+      'Monitor/animador',
+      'Lanche para até 20 crianças'
     ],
-    extras: [
-      "Hora extra: +75€"
-    ],
-    notes: [
-      "É permitido trazer comida e bolo de aniversário",
-      "Reserva com pagamento de 20% do valor total",
-      "Restante pagamento no dia do evento"
-    ],
-    popular: true
+    extras: ['Hora extra: +70 €'],
+    notes: ['É permitido trazer comida, decoração e bolo de aniversário']
   },
   {
     id: 3,
-    name: "Pack Completo",
-    price: "500€",
-    originalPrice: "600€",
-    isPromotion: true,
-    schedules: [
-      "Manhã: 10h – 13h",
-      "Tarde: 16h – 19h"
-    ],
+    name: 'Pack Completo',
+    price: '400 €',
+    isPromotion: false,
+    schedules: ['3h · 10h00 às 13h00 ou 16h00 às 19h00'],
     includes: [
-      "Utilização exclusiva do espaço",
-      "Insuflável, trampolim, piscina de bolas, brinquedos de imitação e outras atividades",
-      "Monitor/animador",
-      "Decoração personalizada (tema à escolha)",
-      "Lanche para até 20 crianças",
-      "Catering para até 30 adultos"
+      'Tudo o que está incluído no Pack Essencial',
+      'Decoração personalizada no tema à escolha',
+      'Mais 30 minutos de diversão'
     ],
-    extras: [
-      "Bolo de aniversário (opcional): +50€"
+    extras: ['Hora extra: +70 €'],
+    notes: ['É permitido trazer comida e bolo de aniversário']
+  },
+  {
+    id: 4,
+    name: 'Pack Premium',
+    price: '550 €',
+    isPromotion: true,
+    schedules: ['3h · 10h00 às 13h00, 11h00 às 14h00 ou 16h00 às 19h00'],
+    includes: [
+      'Tudo o que está incluído no Pack Completo',
+      'Catering para até 30 adultos e 20 crianças',
+      'Bolo de aniversário personalizado oferecido na campanha de 2026'
     ],
-    notes: [
-      "É permitido trazer comida e bolo de aniversário",
-      "Reserva com pagamento de 20% do valor total",
-      "Restante pagamento no dia do evento"
-    ]
+    extras: ['Hora extra: +70 €'],
+    notes: ['Oferta do bolo para festas realizadas até 31/12/2026', 'É permitido trazer comida e bolo de aniversário']
   }
 ];
 
 export const foodOptions = [
   {
     id: 1,
-    name: "Lanche Crianças",
+    name: 'Lanche infantil — Essencial e Completo',
     includes: [
-      "Pães de leite com fiambre e queijo",
-      "Batatas fritas",
-      "Gomas",
-      "Pipocas",
-      "Gelatina",
-      "Bolo simples",
-      "Água e sumo à descrição",
-      "10 cápsulas de café"
+      'Pães de leite com fiambre e queijo', 'Batatas fritas', 'Gomas',
+      'Pipocas', 'Gelatina', 'Torta de chocolate ou morango',
+      'Água e sumo à descrição', '10 cápsulas de café'
     ]
   },
   {
     id: 2,
-    name: "Catering Adultos + Lanche Crianças",
-    subtitle: "Ideal até 20 crianças e 30 adultos",
+    name: 'Catering adultos + lanche infantil — Premium',
+    subtitle: 'Ideal até 20 crianças e 30 adultos',
     includes: [
-      "Batatas fritas",
-      "Gomas",
-      "Pipocas",
-      "Gelatina",
-      "Bolo simples",
-      "Água e sumo à descrição",
-      "2 refrigerantes",
-      "10 cápsulas de café",
-      "Salgadinhos",
-      "Mini pizzas",
-      "Folhado misto XL",
-      "Mix frutos secos",
-      "Sandes variadas",
-      "Fruta laminada",
-      "Folhadinhos de chocolate",
-      "Mini pastelaria variada"
+      'Batatas fritas', 'Gomas', 'Pipocas', 'Gelatina',
+      'Pães de leite com fiambre e queijo', 'Água e sumo à descrição',
+      '2 refrigerantes', '10 cápsulas de café', 'Salgadinhos',
+      'Mini pizzas', 'Folhado misto XL', 'Mix de frutos secos',
+      'Fruta laminada', 'Folhadinhos de chocolate', 'Bolo personalizado'
     ]
   }
 ];
@@ -298,44 +263,20 @@ export const testimonials = [
 ];
 
 export const faqs = [
-  {
-    id: 1,
-    question: "Qual a idade ideal das crianças?",
-    answer: "O nosso espaço é perfeito para crianças desde 1 ano até aos 10 anos."
-  },
-  {
-    id: 2,
-    question: "Posso trazer a minha própria decoração?",
-    answer: "Pode trazer sempre o que quiser, desde o bolo e comida à decoração. Mas o nosso objetivo é deixar isso connosco para que não tenha trabalho e não gaste dinheiro desnecessário."
-  },
-  {
-    id: 3,
-    question: "Com quanto tempo de antecedência devo reservar?",
-    answer: "Recomendamos reservar com pelo menos 5 semanas de antecedência."
-  },
-  {
-    id: 4,
-    question: "Posso visitar o espaço antes de reservar?",
-    answer: "Claro! Agenda uma visita sem compromisso pelo WhatsApp."
-  },
-  {
-    id: 5,
-    question: "Quantas pessoas podem ficar no espaço?",
-    answer: "O espaço tem capacidade para 50 pessoas (adultos e crianças)."
-  },
-  {
-    id: 6,
-    question: "O que acontece se precisar cancelar?",
-    answer: "O depósito de reserva de data não é reembolsável."
-  },
-  {
-    id: 7,
-    question: "O espaço tem ar condicionado?",
-    answer: "Sim, temos ar condicionado em todo o espaço."
-  },
-  {
-    id: 8,
-    question: "Posso trazer animação externa (palhaços, mágicos)?",
-    answer: "Sim, só terá que avisar antes."
-  }
+  { id: 1, question: 'Para que idades é indicado o Espaço Girafinha?', answer: 'Principalmente para crianças dos 1 aos 10 anos, com playground interior adaptado a estas idades.' },
+  { id: 2, question: 'Qual é a capacidade do espaço?', answer: 'Recomendamos até 50 pessoas no total, incluindo as crianças.' },
+  { id: 3, question: 'O espaço fica exclusivo para a nossa festa?', answer: 'Sim. O espaço fica reservado exclusivamente para a sua festa e para os seus convidados.' },
+  { id: 4, question: 'Quanto tempo duram as festas?', answer: 'Os packs têm duração de 2h30 ou 3h. É possível adicionar tempo extra por 70 € por hora.' },
+  { id: 5, question: 'Quanto tempo antes podemos entrar?', answer: 'Os pais ou responsáveis e o aniversariante podem entrar 30 minutos antes do início da festa.' },
+  { id: 6, question: 'Há comida para os adultos?', answer: 'Sim, o buffet fica acessível a todos. Nos packs Essencial e Completo o lanche é mais infantil; o Premium inclui catering específico para até 30 adultos e 20 crianças.' },
+  { id: 7, question: 'Podemos levar comida, bebidas e bolo?', answer: 'Sim. Podem trazer comida, bebidas e bolo de aniversário.' },
+  { id: 8, question: 'Fazem bolos personalizados?', answer: 'Sim, trabalhamos com fornecedores selecionados. Para festas realizadas até 31/12/2026 o Pack Premium inclui a oferta promocional do bolo personalizado.' },
+  { id: 9, question: 'Podemos escolher o tema da decoração?', answer: 'Sim. Nos packs Completo e Premium a decoração é personalizada no tema escolhido. Decorações mais elaboradas podem ser orçamentadas à parte.' },
+  { id: 10, question: 'Há animação e acompanhamento?', answer: 'Sim. Um monitor acompanha as crianças e combina brincadeira livre com atividades orientadas adaptadas ao grupo.' },
+  { id: 11, question: 'O que faz o monitor/animador durante a festa? Que atividades estão incluídas?', answer: 'O monitor acompanha as crianças e propõe atividades adaptadas à idade e ao grupo. As crianças podem brincar livremente no playground, piscina de bolas, escorregas, obstáculos, baloiço, cozinha de madeira e oficina, com jogos, tatuagens temporárias e pequenas atividades orientadas.' },
+  { id: 12, question: 'O espaço tem área exterior?', answer: 'Sim. Existe uma zona exterior para os adultos acompanharem as crianças e outra área nas traseiras que pode receber atividades ou insuflável extra, mediante condições e orçamento.' },
+  { id: 13, question: 'Como se faz a reserva?', answer: 'A data fica reservada com o sinal de 20% do total. Após pagamento, enviamos o formulário de dados da festa. O restante é pago no dia do evento.' },
+  { id: 14, question: 'Com quanto tempo devo reservar?', answer: 'Recomendamos reservar com antecedência, sobretudo para fins de semana, uma vez que algumas datas são reservadas com vários meses de antecedência.' },
+  { id: 15, question: 'Quem limpa o espaço após a festa?', answer: 'A limpeza final fica sempre a cargo da equipa do Espaço Girafinha.' },
+  { id: 16, question: 'Onde fica o espaço?', answer: 'Rua Cândido dos Reis, n.º 1, Loja A, 8300-126 Silves. Existem lugares de estacionamento gratuito nas redondezas.' }
 ];

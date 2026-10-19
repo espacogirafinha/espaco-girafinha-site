@@ -5,6 +5,7 @@ import ServiceOptions from '../components/sections/ServiceOptions';
 import About from '../components/sections/About';
 import Packages from '../components/sections/Packages';
 import FoodOptions from '../components/sections/FoodOptions';
+import Extras from '../components/sections/Extras';
 import ExternalServices from '../components/sections/ExternalServices';
 import WhyChooseUs from '../components/sections/WhyChooseUs';
 import Testimonials from '../components/sections/Testimonials';
@@ -41,14 +42,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-yellow-50 to-green-50">
+    <div className="min-h-screen bg-[#FCFAF6]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, partyServiceSchema]) }} />
       <SiteHeader />
       <Hero />
       <ServiceOptions />
-      <About />
       <Packages packages={content.packages} />
+      <About />
       <FoodOptions />
+      <Extras />
       <ExternalServices />
       <WhyChooseUs />
       <Testimonials testimonials={content.testimonials} />

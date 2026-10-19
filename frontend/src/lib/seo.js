@@ -33,8 +33,8 @@ export const partyServiceSchema = {
   },
   offers: {
     '@type': 'AggregateOffer',
-    lowPrice: '220',
-    highPrice: '500',
+    lowPrice: '200',
+    highPrice: '550',
     priceCurrency: 'EUR',
   },
 };
