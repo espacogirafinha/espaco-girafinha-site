@@ -72,37 +72,37 @@ const ExternalServicesPage = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, schema]) }} />
       <SiteHeader />
       <main>
-        <section className="relative overflow-hidden bg-[#F0F8F5] px-4 pb-16 pt-32 md:pb-20 md:pt-40">
+        <section className="relative overflow-hidden bg-[#F0F8F5] px-4 pb-12 pt-24 md:pb-20 md:pt-32">
           <div aria-hidden="true" className="absolute -right-28 -top-20 h-96 w-96 rounded-full bg-[#F7E2E9]/65 blur-2xl" />
           <div className="container relative z-10 mx-auto max-w-5xl text-center">
-            <p className="mx-auto inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#397F77]"><MapPin className="h-4 w-4" /> Serviços para festas no Algarve</p>
-            <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-bold tracking-tight text-[#29423D] md:text-6xl">
+            <p className="mx-auto inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold md:px-4 md:py-2 md:text-sm text-[#397F77]"><MapPin className="h-4 w-4" /> Serviços para festas no Algarve</p>
+            <h1 className="mx-auto mt-4 max-w-4xl text-3xl font-bold sm:text-4xl md:mt-6 tracking-tight text-[#29423D] md:text-6xl">
               A magia da Girafinha <span className="text-[#DB6F91]">vai até si.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#62796E]">Já tem o local? Podemos cuidar do catering, decoração, animação e outros detalhes para que possa aproveitar a festa.</p>
-            <button onClick={() => openWhatsApp(message)} type="button" className="mt-8 inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#378E85] px-8 py-4 font-bold text-white hover:bg-[#2B766D]">
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed md:mt-6 md:text-lg text-[#62796E]">Já tem o local? Podemos cuidar do catering, decoração, animação e outros detalhes para que possa aproveitar a festa.</p>
+            <button onClick={() => openWhatsApp(message)} type="button" className="mt-5 inline-flex min-h-12 md:mt-8 md:min-h-14 items-center justify-center gap-2 rounded-full bg-[#378E85] px-8 py-4 font-bold text-white hover:bg-[#2B766D]">
               <MessageCircle className="h-5 w-5" /> Pedir orçamento
             </button>
           </div>
         </section>
 
-        <section className="px-4 py-20 md:py-24">
+        <section className="px-4 py-12 md:py-20">
           <div className="container mx-auto max-w-6xl">
-            <div className="mb-12 max-w-3xl">
+            <div className="mb-7 max-w-3xl md:mb-12">
               <p className="text-sm font-bold uppercase tracking-[0.17em] text-[#4C9289]">Serviços externos</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#29423D] md:text-4xl">Escolha o que precisa para o seu evento</h2>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl text-[#29423D] md:text-4xl">Escolha o que precisa para o seu evento</h2>
               <p className="mt-4 leading-relaxed text-[#65796F]">Pode contratar um único serviço ou juntar várias opções numa proposta personalizada.</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2 md:gap-6">
               {services.map(s => (
                 <article key={s.title} className="overflow-hidden rounded-[1.8rem] border border-[#E0EBE5] bg-white shadow-sm">
-                  <div className="aspect-[16/10] bg-[#EAF5F1]">
+                  <div className="aspect-[16/8] bg-[#EAF5F1] sm:aspect-[16/10]">
                     <img src={s.image} alt={s.alt} loading="lazy" className="h-full w-full object-cover" />
                   </div>
-                  <div className="px-6 pb-7 pt-6 md:px-8">
-                    <h3 className="text-2xl font-semibold text-[#2E4D45]">{s.title}</h3>
-                    <p className="mt-3 min-h-[3rem] text-sm leading-relaxed text-[#62786E]">{s.description}</p>
-                    <button type="button" onClick={() => openWhatsApp(message + '\nServiço de interesse: ' + s.title)} className="mt-6 inline-flex items-center gap-2 font-semibold text-[#347F76] hover:underline">
+                  <div className="px-5 pb-5 pt-4 md:px-8 md:pb-7 md:pt-6">
+                    <h3 className="text-xl font-semibold text-[#2E4D45] md:text-2xl">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed md:mt-3 md:min-h-[3rem] text-[#62786E]">{s.description}</p>
+                    <button type="button" onClick={() => openWhatsApp(message + '\nServiço de interesse: ' + s.title)} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold md:mt-6 md:text-base text-[#347F76] hover:underline">
                       Pedir orçamento <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -112,35 +112,35 @@ const ExternalServicesPage = () => {
           </div>
         </section>
 
-        <section id="como-funciona" className="bg-white px-4 py-20">
+        <section id="como-funciona" className="bg-white px-4 py-12 md:py-20">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-center text-3xl font-bold text-[#29423D] md:text-4xl">Como funciona?</h2>
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <h2 className="text-center text-2xl font-bold sm:text-3xl text-[#29423D] md:text-4xl">Como funciona?</h2>
+            <div className="mt-6 grid gap-3 md:mt-10 md:grid-cols-3 md:gap-5">
               {['Conte-nos a data, o local e o que idealizou', 'Preparamos uma proposta à medida', 'Combinamos todos os detalhes consigo'].map((item, i) => (
-                <div key={item} className="rounded-[1.6rem] bg-[#F2F8F5] p-7">
+                <div key={item} className="rounded-[1.4rem] bg-[#F2F8F5] p-5 md:rounded-[1.6rem] md:p-7">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#DBF0E9] font-bold text-[#367F76]">0{i + 1}</span>
-                  <p className="mt-5 text-lg font-semibold leading-snug text-[#344F47]">{item}</p>
+                  <p className="mt-3 text-base font-semibold leading-snug md:mt-5 md:text-lg text-[#344F47]">{item}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="px-4 py-20">
+        <section className="px-4 py-12 md:py-20">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="mb-8 text-center text-3xl font-bold text-[#29423D]">Perguntas frequentes</h2>
+            <h2 className="mb-6 text-center text-2xl font-bold sm:text-3xl text-[#29423D]">Perguntas frequentes</h2>
             <div className="space-y-3">
               {faqs.map(([question, answer]) => (
-                <div key={question} className="rounded-2xl border border-[#E0EBE5] bg-white p-6">
+                <div key={question} className="rounded-xl border border-[#E0EBE5] bg-white p-4 md:rounded-2xl md:p-6">
                   <h3 className="font-semibold text-[#344F47]">{question}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-[#65786E]">{answer}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-11 rounded-[1.8rem] bg-[#F4E7EB] p-8 text-center">
+            <div className="mt-7 rounded-[1.4rem] bg-[#F4E7EB] p-5 md:mt-11 md:rounded-[1.8rem] md:p-8 text-center">
               <h2 className="text-2xl font-bold text-[#29423D]">Vamos preparar o seu evento?</h2>
               <p className="mt-2 text-[#65786E]">Envie-nos os detalhes e ajudamos a encontrar a melhor solução.</p>
-              <button onClick={() => openWhatsApp(message)} type="button" className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#378E85] px-7 py-3 font-semibold text-white hover:bg-[#2B766D]">
+              <button onClick={() => openWhatsApp(message)} type="button" className="mt-4 inline-flex min-h-11 md:mt-6 md:min-h-12 items-center gap-2 rounded-full bg-[#378E85] px-7 py-3 font-semibold text-white hover:bg-[#2B766D]">
                 Pedir orçamento <ArrowRight className="h-5 w-5" />
               </button>
             </div>
