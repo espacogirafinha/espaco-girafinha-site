@@ -1,84 +1,87 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Palette, PartyPopper, Sparkles, Utensils } from 'lucide-react';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 const services = [
   {
     title: 'Catering para eventos',
-    description:
-      'Opções doces e salgadas preparadas com carinho para festas infantis, batizados, aniversários e eventos familiares.',
+    description: 'Doces e salgados preparados para festas infantis, batizados e outros eventos.',
     icon: Utensils,
+    accent: 'bg-[#FFF3DE]',
   },
   {
     title: 'Decorações personalizadas',
-    description:
-      'Criamos decorações à medida do tema escolhido, desde a mesa do bolo aos balões e detalhes visuais da festa.',
+    description: 'Cenários, balões e detalhes adaptados ao tema da sua festa.',
     icon: Palette,
+    accent: 'bg-[#FBE8EE]',
   },
   {
     title: 'Animação com mascotes',
-    description: 'Momentos divertidos com mascotes para surpreender as crianças e criar memórias especiais.',
+    description: 'Personagens divertidas para surpreender os mais pequenos.',
     icon: PartyPopper,
+    accent: 'bg-[#DBF6EF]',
   },
   {
     title: 'Aluguer de insufláveis',
-    description:
-      'Insufláveis para tornar o evento mais divertido, com opções adaptadas ao espaço e à idade das crianças.',
+    description: 'Mais diversão com opções adequadas ao local e à idade das crianças.',
     icon: Sparkles,
+    accent: 'bg-[#EDEAF8]',
   },
 ];
 
 const ExternalServices = () => (
-    <section id="servicos-externos" className="py-12 px-4 bg-gradient-to-b from-white to-teal-50 md:py-20">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-7 md:mb-14">
-          <p className="text-xs font-bold uppercase tracking-wide md:text-sm text-teal-600 mb-3">Serviços externos</p>
-          <h2 className="text-2xl font-bold text-gray-900 mb-3 md:mb-5 md:text-4xl">Também levamos a magia até ao seu evento</h2>
-          <p className="max-w-3xl mx-auto text-sm text-gray-600 leading-relaxed md:text-lg">
-            Se já tem o local, nós tratamos dos detalhes: catering, decoração, animação e aluguer de insufláveis
-            para tornar a festa ainda mais especial.
-          </p>
-          <div className="hidden"></div>
-        </div>
-
-        <div className="grid grid-cols-1 grid-cols-2 gap-3 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
-          {services.map((service) => {
-            const Icon = service.icon;
-
-            return (
-              <Card
-                key={service.title}
-                className="h-full border-2 border-teal-100 bg-white/95 hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="p-3 pb-2 md:p-6 md:pb-4">
-                  <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center mb-3 md:mb-4 md:h-14 md:w-14 md:rounded-full">
-                    <Icon className="h-5 w-5 text-teal-600 md:h-7 md:w-7" />
-                  </div>
-                  <CardTitle className="text-sm text-gray-900 leading-snug md:text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-3 pt-0 md:p-6 md:pt-0">
-                  <p className="text-xs text-gray-600 leading-snug md:text-base md:leading-relaxed">{service.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        <div className="text-center mt-6 md:mt-12">
-          <Button
-            asChild
-            size="lg"
-            data-testid="external-services-cta"
-            className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-4 text-sm rounded-full font-semibold md:px-8 md:py-6 md:text-base">
-            <Link to="/servicos-externos">
-              Conhecer serviços externos
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
+  <section
+    id="servicos-externos"
+    aria-labelledby="servicos-externos-titulo"
+    className="bg-[#FCFAF6] px-4 py-12 md:py-20"
+  >
+    <div className="container mx-auto max-w-6xl">
+      <div className="mx-auto mb-6 max-w-3xl text-center md:mb-12">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-[#458C82] md:mb-3 md:text-sm">
+          Serviços externos
+        </p>
+        <h2
+          id="servicos-externos-titulo"
+          className="text-2xl font-bold leading-tight tracking-tight text-[#29423D] sm:text-3xl md:text-4xl"
+        >
+          Também levamos a magia até ao seu evento
+        </h2>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#647971] md:mt-4 md:text-base">
+          Já tem o local? Tratamos do catering, decoração e animação para tornar a festa ainda mais especial.
+        </p>
       </div>
-    </section>
+
+      <div className="grid grid-cols-2 gap-3 md:gap-5 lg:grid-cols-4">
+        {services.map(({ title, description, icon: Icon, accent }) => (
+          <article
+            key={title}
+            className="flex h-full min-w-0 flex-col rounded-[1.5rem] border border-[#D8EEE7] bg-white p-3.5 shadow-sm transition-shadow hover:shadow-md sm:p-5 md:rounded-[1.8rem] md:p-7"
+          >
+            <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl text-[#398E84] md:mb-5 md:h-14 md:w-14 md:rounded-2xl ${accent}`}>
+              <Icon className="h-5 w-5 md:h-7 md:w-7" aria-hidden="true" />
+            </div>
+            <h3 className="text-sm font-bold leading-snug text-[#29423D] md:text-lg">
+              {title}
+            </h3>
+            <p className="mt-2 text-xs leading-relaxed text-[#60766D] md:mt-3 md:text-sm">
+              {description}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-6 text-center md:mt-9">
+        <Link
+          to="/servicos-externos"
+          data-testid="external-services-cta"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#378E85] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2B756D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DB6F91] md:text-base"
+        >
+          Conhecer serviços externos
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
+      </div>
+    </div>
+  </section>
 );
 
 export default ExternalServices;
