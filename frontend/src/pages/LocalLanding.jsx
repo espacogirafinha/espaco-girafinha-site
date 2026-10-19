@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Check, MapPin, MessageCircle, Sparkles } from 'lucide-react';
 import SiteHeader from '../components/sections/SiteHeader';
 import SiteFooter from '../components/sections/SiteFooter';
 import FloatingWhatsApp from '../components/sections/FloatingWhatsApp';
+import { PrivacyModal, TermsModal } from '../components/sections/LegalModals';
 import Packages from '../components/sections/Packages';
 import FAQ from '../components/sections/FAQ';
 import ReservationForm from '../components/sections/ReservationForm';
@@ -48,6 +49,8 @@ const LocalLanding = () => {
   const page = pages[slug];
   const { openWhatsApp } = useWhatsApp();
   const { content } = useSiteContent();
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
 
   useEffect(() => {
     if (!page) return;
@@ -72,32 +75,32 @@ const LocalLanding = () => {
       <SiteHeader />
 
       <main>
-        <section className="relative pt-32 pb-20 px-4 overflow-hidden min-h-[560px] flex items-center">
+        <section className="relative overflow-hidden px-4 pb-14 pt-28 md:pb-20 md:pt-36 min-h-[420px] md:min-h-[540px] flex items-center">
           <img src={page.image} alt={page.h1} className="absolute inset-0 h-full w-full object-cover" loading="eager" fetchpriority="high" />
           <div className="absolute inset-0 bg-[#23372F]/65" />
           <div className="container mx-auto relative z-10 max-w-4xl text-center text-white">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur">
               <MapPin className="h-4 w-4" /> {page.area}
             </div>
-            <h1 className="mt-6 text-4xl md:text-6xl font-bold leading-tight">{page.h1}</h1>
-            <p className="mt-5 text-lg md:text-2xl font-semibold text-white/95">{page.intro}</p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" onClick={() => openWhatsApp(buildGeneralWhatsAppMessage(page.h1))} className="bg-[#378E85] hover:bg-[#2B756D] text-white rounded-full px-8 py-6 text-lg font-bold">
+            <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl md:mt-6 md:text-6xl">{page.h1}</h1>
+            <p className="mt-4 text-sm font-medium leading-relaxed text-white/95 sm:text-base md:mt-5 md:text-xl">{page.intro}</p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:mt-8 md:gap-4">
+              <Button size="lg" onClick={() => openWhatsApp(buildGeneralWhatsAppMessage(page.h1))} className="bg-[#378E85] hover:bg-[#2B756D] text-white rounded-full px-6 py-3 text-sm font-bold md:px-8 md:py-5 md:text-base">
                 <MessageCircle className="h-5 w-5 mr-2" /> Pedir orçamento
               </Button>
-              <Link to="/#pacotes" className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-bold text-[#347F76] shadow-xl hover:bg-gray-100">
+              <Link to="/#pacotes" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold md:px-8 md:py-4 md:text-base text-[#347F76] shadow-xl hover:bg-gray-100">
                 Ver pacotes
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="bg-white px-4 py-16">
+        <section className="bg-white px-4 py-10 md:py-16">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid gap-6 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
               {page.highlights.map((item) => (
-                <Card key={item} className="border-[#DCEBE4]">
-                  <CardContent className="p-5 flex gap-3">
+                <Card key={item} className="rounded-[1.5rem] border-[#DCEBE4] shadow-sm">
+                  <CardContent className="flex items-start gap-2 p-4 text-sm md:gap-3 md:p-5 md:text-base">
                     <Check className="h-5 w-5 text-[#378E85] flex-shrink-0 mt-0.5" />
                     <p className="font-semibold text-gray-800">{item}</p>
                   </CardContent>
@@ -107,11 +110,11 @@ const LocalLanding = () => {
           </div>
         </section>
 
-        <section className="px-4 py-16 bg-gradient-to-b from-[#FCFAF6] to-white">
+        <section className="bg-[#FCFAF6] px-4 py-10 md:py-16">
           <div className="container mx-auto max-w-5xl text-center">
             <Sparkles className="mx-auto h-9 w-9 text-[#378E85]" />
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold text-gray-900">Uma festa especial, com tudo o que precisa</h2>
-            <p className="mt-4 text-lg text-gray-700">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#29423D] md:mt-4 md:text-4xl">Uma festa especial, com tudo o que precisa</h2>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-[#60766D] md:mt-4 md:text-lg">
               Tratamos do espaço, da diversão e dos detalhes para que os pais possam aproveitar o dia. Pode escolher um pacote simples ou uma solução completa com decoração e catering.
             </p>
           </div>
@@ -122,7 +125,9 @@ const LocalLanding = () => {
         <ReservationForm packages={content.packages} />
       </main>
 
-      <SiteFooter />
+      <SiteFooter onOpenPrivacy={() => setPrivacyOpen(true)} onOpenTerms={() => setTermsOpen(true)} />
+      <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      <TermsModal open={termsOpen} onClose={() => setTermsOpen(false)} />
       <FloatingWhatsApp />
     </div>
   );
