@@ -98,28 +98,31 @@ const ReservationForm = ({ packages = [] }) => {
 
         <form onSubmit={submit} className="grid gap-3 rounded-[1.5rem] border border-[#DCEBE4] bg-white p-5 md:gap-4 md:rounded-[2rem] md:p-10 shadow-sm" data-testid="reservation-form">
           <div className="grid gap-3 md:grid-cols-2 md:gap-4">
-            <Input placeholder="Nome do responsável" value={form.parent_name} onChange={(e) => update('parent_name', e.target.value)} required />
-            <Input placeholder="Nome da criança" value={form.child_name} onChange={(e) => update('child_name', e.target.value)} />
-            <Input type="tel" placeholder="Telefone / WhatsApp" value={form.phone} onChange={(e) => update('phone', e.target.value)} required />
-            <Input type="email" placeholder="Email" value={form.email} onChange={(e) => update('email', e.target.value)} />
-            <Input type="date" value={form.event_date} onChange={(e) => update('event_date', e.target.value)} />
-            <select value={form.event_time} onChange={(e) => update('event_time', e.target.value)} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+            <Input aria-label="Nome do responsável" autoComplete="name" placeholder="Nome do responsável" value={form.parent_name} onChange={(e) => update('parent_name', e.target.value)} required />
+            <Input aria-label="Nome da criança" placeholder="Nome da criança" value={form.child_name} onChange={(e) => update('child_name', e.target.value)} />
+            <Input type="tel" aria-label="Telefone ou WhatsApp" autoComplete="tel" placeholder="Telefone / WhatsApp" value={form.phone} onChange={(e) => update('phone', e.target.value)} required />
+            <Input type="email" aria-label="Email" autoComplete="email" placeholder="Email" value={form.email} onChange={(e) => update('email', e.target.value)} />
+            <Input type="date" aria-label="Data pretendida para a festa" value={form.event_date} onChange={(e) => update('event_date', e.target.value)} />
+            <select aria-label="Horário pretendido" value={form.event_time} onChange={(e) => update('event_time', e.target.value)} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
               <option value="">Horário pretendido</option>
               {filteredTimeSlots.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
             </select>
-            <select value={form.package_name} onChange={(e) => setForm(current => ({...current, package_name: e.target.value, event_time: ''}))} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+            <select aria-label="Pack pretendido" value={form.package_name} onChange={(e) => setForm(current => ({...current, package_name: e.target.value, event_time: ''}))} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
               <option value="">Pacote pretendido</option>
               {packages.map((pkg) => <option key={pkg.id} value={pkg.name}>{pkg.name}</option>)}
               <option value="Ainda não sei">Ainda não sei</option>
             </select>
-            <Input type="number" min="1" placeholder="Nº estimado de convidados" value={form.guests_count} onChange={(e) => update('guests_count', e.target.value)} />
+            <Input type="number" aria-label="Número estimado de convidados" min="1" placeholder="Nº estimado de convidados" value={form.guests_count} onChange={(e) => update('guests_count', e.target.value)} />
           </div>
-          <Textarea placeholder="Tema, idade, dúvidas ou detalhes importantes" rows={3} value={form.message} onChange={(e) => update('message', e.target.value)} />
+          <Textarea aria-label="Mensagem com tema, idade e detalhes da festa" placeholder="Tema, idade, dúvidas ou detalhes importantes" rows={3} value={form.message} onChange={(e) => update('message', e.target.value)} />
           {status.message && (
             <p className={`rounded-md p-3 text-sm ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
               {status.message}
             </p>
           )}
+          <p className="text-xs leading-relaxed text-[#68796E]">
+            Utilizamos os dados indicados apenas para responder ao seu pedido e organizar o contacto. Consulte a nossa Política de Privacidade no rodapé do site. O envio não confirma a reserva.
+          </p>
           <Button type="submit" disabled={submitting} className="bg-[#378E85] hover:bg-[#2B766D] text-white rounded-full py-5 text-sm font-bold md:py-6 md:text-base">
             <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Pedir disponibilidade'}
           </Button>
