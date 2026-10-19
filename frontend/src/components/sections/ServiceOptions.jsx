@@ -5,7 +5,7 @@ const options = [
   { title: 'Serviços no seu local', body: 'Já tem o espaço? Levamos catering, decorações, mascotes e insufláveis até ao local do seu evento, sujeito a disponibilidade.', label: 'Explorar serviços', href: '/servicos-externos', icon: Sparkles, tone: 'bg-[#FFF3F4]' },
 ];
 const ServiceOptions = () => (
-  <section className="bg-white px-4 py-11 md:py-18">
+  <section className="bg-white px-4 py-11 md:py-20">
     <div className="container mx-auto max-w-6xl">
       <div className="mb-6 text-center md:mb-10">
         <p className="text-sm font-bold uppercase tracking-[0.17em] text-[#43887F]">Duas formas de celebrar</p>
