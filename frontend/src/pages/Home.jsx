@@ -41,13 +41,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-yellow-50 to-green-50">
+    <div className="min-h-screen bg-[#FCFAF6]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, partyServiceSchema]) }} />
       <SiteHeader />
       <Hero />
       <ServiceOptions />
-      <About />
       <Packages packages={content.packages} />
+      <About />
       <FoodOptions />
       <ExternalServices />
       <WhyChooseUs />
