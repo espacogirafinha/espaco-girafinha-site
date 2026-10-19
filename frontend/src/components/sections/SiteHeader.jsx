@@ -5,6 +5,7 @@ import { CalendarDays, Menu, X } from 'lucide-react';
 const navItems = [
   { label: 'O espaço', href: '/#sobre' },
   { label: 'Packs', href: '/#pacotes' },
+  { label: 'Extras', href: '/#extras' },
   { label: 'Serviços externos', href: '/servicos-externos' },
   { label: 'Galeria', href: '/galeria' },
   { label: 'FAQ', href: '/perguntas-frequentes' },
@@ -26,7 +27,7 @@ const SiteHeader = () => {
           </div>
         </a>
 
-        <nav className="hidden items-center gap-5 lg:flex" aria-label="Menu principal">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label="Menu principal">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="text-sm font-medium text-[#516860] transition hover:text-[#36887E]">
               {item.label}
@@ -43,7 +44,7 @@ const SiteHeader = () => {
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#CFE8E2] bg-white text-[#367F76] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#CFE8E2] bg-white text-[#367F76] xl:hidden"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -51,7 +52,7 @@ const SiteHeader = () => {
       </div>
 
       {open && (
-        <nav className="border-t border-[#E6EEE9] bg-[#FFFEFC] px-4 pb-5 pt-2 lg:hidden" aria-label="Menu móvel">
+        <nav className="border-t border-[#E6EEE9] bg-[#FFFEFC] px-4 pb-5 pt-2 xl:hidden" aria-label="Menu móvel">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} onClick={close} className="block rounded-xl px-4 py-3 text-sm font-semibold text-[#516860] hover:bg-[#EDF7F3]">
               {item.label}
