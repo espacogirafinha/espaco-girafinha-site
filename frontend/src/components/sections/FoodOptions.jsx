@@ -1,55 +1,31 @@
 import React from 'react';
-import { Check } from 'lucide-react';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Check, MessageCircle } from 'lucide-react';
 import { foodOptions } from '../../data/mock';
 import { useWhatsApp } from '../../hooks/useWhatsApp';
 
 const FoodOptions = () => {
   const { openWhatsApp } = useWhatsApp();
-
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="bg-white px-4 py-20 md:py-24" id="catering">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Opções de Lanche e Catering</h2>
-          <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full"></div>
+        <div className="mb-12 max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.17em] text-[#458C82]">Momentos deliciosos</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#29423D] md:text-4xl">Lanche e catering com tudo preparado.</h2>
+          <p className="mt-4 text-base leading-relaxed text-[#62776C]">O buffet fica disponível para todos os convidados. Nos packs Essencial e Completo, o lanche é pensado sobretudo para crianças; no Premium está incluído catering para adultos.</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {foodOptions.map((option) => (
-            <Card key={option.id} className="border-2 border-teal-100 hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl text-teal-600 mb-2">{option.name}</CardTitle>
-                {option.subtitle && (
-                  <p className="text-sm font-semibold text-gray-700 bg-teal-50 rounded-lg px-3 py-2 inline-block">
-                    {option.subtitle}
-                  </p>
-                )}
-              </CardHeader>
-              <CardContent>
-                <p className="text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Inclui:</p>
-                <ul className="space-y-2">
-                  {option.includes.map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                      <Check className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        <div className="grid gap-6 md:grid-cols-2">
+          {foodOptions.map((option, i) => (
+            <article key={option.id} className={`overflow-hidden rounded-[1.8rem] border border-[#E4ECE7] p-7 md:p-9 ${i ? 'bg-[#FFF8ED]' : 'bg-[#F2FAF6]'}`}>
+              <h3 className="text-2xl font-bold text-[#29423D]">{option.name}</h3>
+              {option.subtitle && <p className="mt-2 text-sm font-semibold text-[#8C7750]">{option.subtitle}</p>}
+              <ul className="mt-6 grid gap-x-4 gap-y-3 sm:grid-cols-2">
+                {option.includes.map(item => <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-[#53695F]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#3F8B81]"/><span>{item}</span></li>)}
+              </ul>
+            </article>
           ))}
         </div>
-
-        <div className="text-center mt-12">
-          <Button
-            size="lg"
-            data-testid="food-cta"
-            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 rounded-full font-semibold"
-            onClick={() => openWhatsApp()}>
-            💬 Pedir Informações sobre Lanche e Catering
-          </Button>
+        <div className="mt-8 text-center">
+          <button onClick={() => openWhatsApp('Olá! Gostaria de saber mais sobre as opções de catering do Espaço Girafinha.')} type="button" data-testid="food-cta" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#B8D9D1] bg-white px-7 py-3 font-semibold text-[#378E85] hover:bg-[#F1F9F6]"><MessageCircle className="h-4 w-4"/> Perguntar sobre catering</button>
         </div>
       </div>
     </section>
