@@ -42,6 +42,7 @@ const SiteFooter = ({ onOpenPrivacy, onOpenTerms }) => {
           <div className="flex flex-wrap gap-4">
             {onOpenPrivacy && <button type="button" onClick={onOpenPrivacy} className="hover:text-white">Política de Privacidade</button>}
             {onOpenTerms && <button type="button" onClick={onOpenTerms} className="hover:text-white">Termos e Condições</button>}
+            <button type="button" onClick={() => window.dispatchEvent(new Event('girafinha:cookie-preferences'))} className="hover:text-white">Preferências de cookies</button>
             <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener noreferrer" className="hover:text-white">Livro de Reclamações</a>
           </div>
         </div>
