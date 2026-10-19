@@ -273,9 +273,10 @@ export const faqs = [
   { id: 8, question: 'Fazem bolos personalizados?', answer: 'Sim, trabalhamos com fornecedores selecionados. Para festas realizadas até 31/12/2026 o Pack Premium inclui a oferta promocional do bolo personalizado.' },
   { id: 9, question: 'Podemos escolher o tema da decoração?', answer: 'Sim. Nos packs Completo e Premium a decoração é personalizada no tema escolhido. Decorações mais elaboradas podem ser orçamentadas à parte.' },
   { id: 10, question: 'Há animação e acompanhamento?', answer: 'Sim. Um monitor acompanha as crianças e combina brincadeira livre com atividades orientadas adaptadas ao grupo.' },
-  { id: 11, question: 'O espaço tem área exterior?', answer: 'Sim. Existe uma zona exterior para os adultos acompanharem as crianças e outra área nas traseiras que pode receber atividades ou insuflável extra, mediante condições e orçamento.' },
-  { id: 12, question: 'Como se faz a reserva?', answer: 'A data fica reservada com o sinal de 20% do total. Após pagamento, enviamos o formulário de dados da festa. O restante é pago no dia do evento.' },
-  { id: 13, question: 'Com quanto tempo devo reservar?', answer: 'Recomendamos reservar com antecedência, sobretudo para fins de semana, uma vez que algumas datas são reservadas com vários meses de antecedência.' },
-  { id: 14, question: 'Quem limpa o espaço após a festa?', answer: 'A limpeza final fica sempre a cargo da equipa do Espaço Girafinha.' },
-  { id: 15, question: 'Onde fica o espaço?', answer: 'Rua Cândido dos Reis, n.º 1, Loja A, 8300-126 Silves. Existem lugares de estacionamento gratuito nas redondezas.' }
+  { id: 11, question: 'O que faz o monitor/animador durante a festa? Que atividades estão incluídas?', answer: 'O monitor acompanha as crianças e propõe atividades adaptadas à idade e ao grupo. As crianças podem brincar livremente no playground, piscina de bolas, escorregas, obstáculos, baloiço, cozinha de madeira e oficina, com jogos, tatuagens temporárias e pequenas atividades orientadas.' },
+  { id: 12, question: 'O espaço tem área exterior?', answer: 'Sim. Existe uma zona exterior para os adultos acompanharem as crianças e outra área nas traseiras que pode receber atividades ou insuflável extra, mediante condições e orçamento.' },
+  { id: 13, question: 'Como se faz a reserva?', answer: 'A data fica reservada com o sinal de 20% do total. Após pagamento, enviamos o formulário de dados da festa. O restante é pago no dia do evento.' },
+  { id: 14, question: 'Com quanto tempo devo reservar?', answer: 'Recomendamos reservar com antecedência, sobretudo para fins de semana, uma vez que algumas datas são reservadas com vários meses de antecedência.' },
+  { id: 15, question: 'Quem limpa o espaço após a festa?', answer: 'A limpeza final fica sempre a cargo da equipa do Espaço Girafinha.' },
+  { id: 16, question: 'Onde fica o espaço?', answer: 'Rua Cândido dos Reis, n.º 1, Loja A, 8300-126 Silves. Existem lugares de estacionamento gratuito nas redondezas.' }
 ];
