@@ -11,7 +11,7 @@ const ModalShell = ({ title, onClose, children }) => (
         </button>
       </div>
       <div className="prose prose-sm max-w-none text-gray-700 space-y-4">
-        <p className="text-sm text-gray-500">Última atualização: {new Date().toLocaleDateString('pt-PT')}</p>
+        <p className="text-sm text-gray-500">Última atualização: 19/10/2026</p>
         {children}
         <div className="mt-8 pt-6 border-t">
           <button
@@ -68,7 +68,7 @@ export const PrivacyModal = ({ open, onClose }) => {
       </ul>
 
       <h3 className="font-bold text-lg mt-6">6. Cookies</h3>
-      <p>O nosso website utiliza cookies essenciais para o funcionamento do site. Não utilizamos cookies de tracking ou publicidade.</p>
+      <p>O site utiliza armazenamento necessário para funcionalidades essenciais e, se autorizar, cookies de análise através do Google Analytics. Os cookies de análise são opcionais, podem recolher dados de utilização e só são ativados após consentimento. Pode aceitar ou rejeitar estes cookies e alterar a sua escolha em «Preferências de cookies», disponível no rodapé. Não utilizamos cookies de publicidade nesta configuração.</p>
 
       <h3 className="font-bold text-lg mt-6">7. Contacto</h3>
       <p>Para exercer os seus direitos ou esclarecer dúvidas sobre privacidade:</p>
@@ -90,7 +90,7 @@ export const TermsModal = ({ open, onClose }) => {
         <li>A reserva é confirmada mediante pagamento de <strong>20% do valor total</strong> do pacote escolhido</li>
         <li>O pagamento restante (80%) deve ser efetuado <strong>no dia do evento</strong></li>
         <li>O sinal de reserva <strong>não é reembolsável</strong> em caso de cancelamento</li>
-        <li>Recomendamos reservas com pelo menos 5 semanas de antecedência</li>
+        <li>Recomendamos efetuar a reserva com antecedência, especialmente para fins de semana.</li>
       </ul>
 
       <h3 className="font-bold text-lg mt-6">3. Cancelamentos e Alterações</h3>
@@ -103,8 +103,8 @@ export const TermsModal = ({ open, onClose }) => {
       <h3 className="font-bold text-lg mt-6">4. Capacidade e Horários</h3>
       <ul className="list-disc pl-5 space-y-2">
         <li>Capacidade máxima: 50 pessoas (adultos + crianças)</li>
-        <li>Horários disponíveis: Manhã (10h-13h) / Tarde (16h-19h)</li>
-        <li>Horas extra: 75€ por hora adicional</li>
+        <li>Horários conforme o pack: Essencial manhã (10h30–13h00); Essencial tarde (14h00–16h30 ou 17h00–19h30); Completo (10h00–13h00 ou 16h00–19h00); Premium (10h00–13h00, 11h00–14h00 ou 16h00–19h00).</li>
+        <li>Horas extra: 70 € por hora adicional</li>
         <li>Tolerância de 15 minutos no final do horário</li>
       </ul>
 
