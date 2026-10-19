@@ -86,7 +86,7 @@ export const PrivacyModal = ({ open, onClose }) => {
       </ul>
 
       <h3 className="font-bold text-lg mt-6">6. Cookies</h3>
-      <p>O site utiliza armazenamento necessário para funcionalidades essenciais e, se autorizar, cookies de análise através do Google Analytics. Os cookies de análise são opcionais, podem recolher dados de utilização e só são ativados após consentimento. Pode aceitar ou rejeitar estes cookies e alterar a sua escolha em «Preferências de cookies», disponível no rodapé. Não utilizamos cookies de publicidade nesta configuração.</p>
+      <p>O site utiliza armazenamento necessário para funcionalidades essenciais e, se autorizar, cookies de análise através do Google Analytics 4, carregados diretamente e com apoio do Google Tag Manager para futuras medições. As etiquetas opcionais apenas são carregadas após consentimento para análise. A medição pode incluir páginas visitadas e pedidos de disponibilidade registados com sucesso, sem transmitir ao Google o nome, telefone, email, nome da criança ou conteúdo da mensagem. Pode aceitar ou rejeitar os cookies de análise e alterar a escolha em «Preferências de cookies», no rodapé. Não utilizamos cookies de publicidade nesta configuração.</p>
 
       <h3 className="font-bold text-lg mt-6">7. Contacto</h3>
       <p>Para exercer os seus direitos ou esclarecer dúvidas sobre privacidade:</p>

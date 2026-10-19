@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const KEY = 'girafinha_analytics_consent_v1';
-const GA_ID = 'G-2EH5K72MCN';
+import { GA_MEASUREMENT_ID as GA_ID, GTM_CONTAINER_ID as GTM_ID } from '../../lib/analytics';
 
 const readChoice = () => {
   try {
@@ -12,34 +12,80 @@ const readChoice = () => {
   }
 };
 
-const loadAnalytics = () => {
-  // Uma alteração de preferências de «rejeitar» para «aceitar» deve
-  // reativar o Analytics mesmo que o script já esteja carregado.
-  window[`ga-disable-${GA_ID}`] = false;
+const loadTagManager = () => {
+  // A instalação por JavaScript substitui o snippet em <head> e evita
+  // carregar o GTM antes de existir consentimento. Não incluir noscript:
+  // o website requer JS e o iframe poderia contornar esta preferência.
+  if (document.getElementById('girafinha-gtm-script')) return;
+
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-  window.gtag('consent', 'update', { analytics_storage: 'granted' });
-  if (document.getElementById('girafinha-ga-script')) return;
-  window.gtag('js', new Date());
-  window.gtag('config', GA_ID, { anonymize_ip: true });
+  window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+
   const script = document.createElement('script');
-  script.id = 'girafinha-ga-script';
+  script.id = 'girafinha-gtm-script';
   script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
   document.head.appendChild(script);
 };
 
+const loadAnalytics = () => {
+  // Consentimento básico: não se carregam etiquetas antes da escolha.
+  window.__girafinhaAnalyticsConsent = true;
+  window[`ga-disable-${GA_ID}`] = false;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+
+  window.gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+  window.gtag('consent', 'update', {
+    analytics_storage: 'granted',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  if (!document.getElementById('girafinha-ga-script')) {
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID, { anonymize_ip: true });
+
+    const script = document.createElement('script');
+    script.id = 'girafinha-ga-script';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(script);
+  }
+
+  // Nesta fase o GA4 continua instalado diretamente: o contentor GTM
+  // NÃO deve ter uma Google tag com o mesmo ID, para não duplicar visitas.
+  loadTagManager();
+};
+
 const stopAnalytics = () => {
+  window.__girafinhaAnalyticsConsent = false;
   window[`ga-disable-${GA_ID}`] = true;
   if (typeof window.gtag === 'function') {
-    window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    window.gtag('consent', 'update', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
   }
-  // Limpa cookies first-party comuns do Analytics, caso tenham sido
-  // definidos após uma aceitação anterior neste domínio.
+
+  // Remover os cookies first-party do Analytics após a revogação.
+  // A configuração das futuras etiquetas do GTM deve exigir
+  // analytics_storage='granted' também em mudanças de preferência.
+  const root = window.location.hostname.replace(/^www\./, '');
   document.cookie.split(';').forEach(part => {
     const name = part.trim().split('=')[0];
     if (/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) {
-      document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax';
+      for (const domain of ['', '; Domain=.' + root]) {
+        document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax' + domain;
+      }
     }
   });
 };
@@ -72,7 +118,7 @@ const CookieConsent = () => {
     <aside role="dialog" aria-label="Preferências de cookies" aria-modal="false" className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-xl rounded-2xl border border-[#CFE8E0] bg-white p-4 shadow-xl shadow-[#29423D]/20 md:bottom-5 md:p-5">
       <p className="text-sm font-bold text-[#29423D]">A sua privacidade importa</p>
       <p className="mt-1 text-xs leading-relaxed text-[#5F7269] md:text-sm">
-        Utilizamos armazenamento essencial para o funcionamento do site. O Google Analytics só é ativado se aceitar cookies de análise. Pode alterar a escolha no rodapé.
+        Utilizamos armazenamento essencial para o funcionamento do site. O Google Analytics e o Google Tag Manager só são ativados se aceitar cookies de análise. Pode alterar a escolha no rodapé.
       </p>
       <div className="mt-3 grid grid-cols-2 gap-2">
         <button type="button" onClick={() => select('rejected')} className="min-h-11 rounded-full border border-[#BBDDD4] bg-white px-3 py-2 text-sm font-semibold text-[#347E75] hover:bg-[#F0F8F4]">Rejeitar análise</button>
