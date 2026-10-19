@@ -86,18 +86,18 @@ const ReservationForm = ({ packages = [] }) => {
   };
 
   return (
-    <section id="pre-reserva" className="py-20 px-4 bg-[#F0F8F4]">
+    <section id="pre-reserva" className="py-12 px-4 bg-[#F0F8F4] md:py-20">
       <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-7 md:mb-12">
           <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#378E85]">
             <CalendarDays className="h-4 w-4" /> Pedido de disponibilidade
           </div>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-[#29423D]">Vamos descobrir a melhor data para a sua festa</h2>
-          <p className="mt-3 text-base text-[#62766D]">Diga-nos a data e o pack que prefere. Confirmamos as opções disponíveis antes de reservar.</p>
+          <h2 className="mt-3 text-2xl sm:text-3xl md:mt-4 md:text-4xl font-bold tracking-tight text-[#29423D]">Vamos descobrir a melhor data para a sua festa</h2>
+          <p className="mt-2 text-sm text-[#62766D] md:mt-3 md:text-base">Diga-nos a data e o pack que prefere. Confirmamos as opções disponíveis antes de reservar.</p>
         </div>
 
-        <form onSubmit={submit} className="grid gap-4 rounded-[2rem] border border-[#DCEBE4] bg-white p-6 md:p-10 shadow-sm" data-testid="reservation-form">
-          <div className="grid md:grid-cols-2 gap-4">
+        <form onSubmit={submit} className="grid gap-3 rounded-[1.5rem] border border-[#DCEBE4] bg-white p-5 md:gap-4 md:rounded-[2rem] md:p-10 shadow-sm" data-testid="reservation-form">
+          <div className="grid gap-3 md:grid-cols-2 md:gap-4">
             <Input placeholder="Nome do responsável" value={form.parent_name} onChange={(e) => update('parent_name', e.target.value)} required />
             <Input placeholder="Nome da criança" value={form.child_name} onChange={(e) => update('child_name', e.target.value)} />
             <Input type="tel" placeholder="Telefone / WhatsApp" value={form.phone} onChange={(e) => update('phone', e.target.value)} required />
@@ -114,13 +114,13 @@ const ReservationForm = ({ packages = [] }) => {
             </select>
             <Input type="number" min="1" placeholder="Nº estimado de convidados" value={form.guests_count} onChange={(e) => update('guests_count', e.target.value)} />
           </div>
-          <Textarea placeholder="Tema, idade, dúvidas ou detalhes importantes" rows={4} value={form.message} onChange={(e) => update('message', e.target.value)} />
+          <Textarea placeholder="Tema, idade, dúvidas ou detalhes importantes" rows={3} value={form.message} onChange={(e) => update('message', e.target.value)} />
           {status.message && (
             <p className={`rounded-md p-3 text-sm ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
               {status.message}
             </p>
           )}
-          <Button type="submit" disabled={submitting} className="bg-[#378E85] hover:bg-[#2B766D] text-white rounded-full py-6 text-base font-bold">
+          <Button type="submit" disabled={submitting} className="bg-[#378E85] hover:bg-[#2B766D] text-white rounded-full py-5 text-sm font-bold md:py-6 md:text-base">
             <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Pedir disponibilidade'}
           </Button>
         </form>
