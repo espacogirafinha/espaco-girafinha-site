@@ -6,7 +6,15 @@ import { Textarea } from '../ui/textarea';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { useWhatsApp } from '../../hooks/useWhatsApp';
 
-const timeSlots = ['Manhã: 10h - 13h', 'Tarde: 16h - 19h', 'Ainda não sei'];
+const timeSlots = [
+  'Essencial manhã · 10h30–13h00',
+  'Essencial tarde · 14h00–16h30',
+  'Essencial tarde · 17h00–19h30',
+  'Completo/Premium · 10h00–13h00',
+  'Premium · 11h00–14h00',
+  'Completo/Premium · 16h00–19h00',
+  'Ainda não sei'
+];
 
 const ReservationForm = ({ packages = [] }) => {
   const { openWhatsApp } = useWhatsApp();
@@ -72,8 +80,8 @@ const ReservationForm = ({ packages = [] }) => {
           <div className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-sm font-bold text-teal-700">
             <CalendarDays className="h-4 w-4" /> Pré-reserva
           </div>
-          <h2 className="mt-4 text-4xl font-bold text-gray-900">Veja disponibilidade para a sua data</h2>
-          <p className="mt-3 text-lg text-gray-600">Preencha os dados principais e respondemos com confirmação pelo WhatsApp.</p>
+          <h2 className="mt-4 text-4xl font-bold text-gray-900">Vamos descobrir a melhor data para a sua festa</h2>
+          <p className="mt-3 text-lg text-gray-600">Diga-nos a data e o pack que prefere. Confirmamos as opções disponíveis antes de reservar.</p>
         </div>
 
         <form onSubmit={submit} className="grid gap-4 rounded-2xl border border-teal-100 bg-white p-5 md:p-8 shadow-lg" data-testid="reservation-form">
@@ -101,7 +109,7 @@ const ReservationForm = ({ packages = [] }) => {
             </p>
           )}
           <Button type="submit" disabled={submitting} className="bg-green-600 hover:bg-green-700 text-white rounded-full py-6 text-base font-bold">
-            <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Enviar pré-reserva'}
+            <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Pedir disponibilidade'}
           </Button>
         </form>
       </div>
