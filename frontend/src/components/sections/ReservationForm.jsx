@@ -16,6 +16,13 @@ const timeSlots = [
   'Ainda não sei'
 ];
 
+const timeSlotsByPack = {
+  'Pack Essencial — manhã': ['Essencial manhã · 10h30–13h00'],
+  'Pack Essencial — tarde': ['Essencial tarde · 14h00–16h30', 'Essencial tarde · 17h00–19h30'],
+  'Pack Completo': ['Completo/Premium · 10h00–13h00', 'Completo/Premium · 16h00–19h00'],
+  'Pack Premium': ['Completo/Premium · 10h00–13h00', 'Premium · 11h00–14h00', 'Completo/Premium · 16h00–19h00'],
+};
+
 const ReservationForm = ({ packages = [] }) => {
   const { openWhatsApp } = useWhatsApp();
   const [form, setForm] = useState({
@@ -31,11 +38,13 @@ const ReservationForm = ({ packages = [] }) => {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
+  const filteredTimeSlots = timeSlotsByPack[form.package_name] || timeSlots;
+
 
   const update = (name, value) => setForm((current) => ({ ...current, [name]: value }));
 
   const buildWhatsAppMessage = () => [
-    'Olá! Gostaria de fazer uma pré-reserva no Espaço Girafinha.',
+    'Olá! Gostaria de consultar disponibilidade para uma festa no Espaço Girafinha.',
     `Nome: ${form.parent_name}`,
     form.child_name ? `Criança/aniversariante: ${form.child_name}` : '',
     `Telefone: ${form.phone}`,
@@ -54,6 +63,10 @@ const ReservationForm = ({ packages = [] }) => {
     setSubmitting(true);
     setStatus({ type: '', message: '' });
 
+    // Abrir WhatsApp diretamente da interação evita bloqueio de popup
+    // enquanto a gravação do lead decorre.
+    openWhatsApp(buildWhatsAppMessage());
+
     if (isSupabaseConfigured) {
       const payload = {
         ...form,
@@ -63,28 +76,27 @@ const ReservationForm = ({ packages = [] }) => {
       };
       const { error } = await supabase.from('reservation_leads').insert(payload);
       if (error) {
-        setStatus({ type: 'error', message: 'Não foi possível guardar a pré-reserva. O WhatsApp vai abrir para não perdermos o pedido.' });
+        setStatus({ type: 'error', message: 'Não foi possível guardar o pedido no site. Por favor, conclua o contacto no WhatsApp que abriu.' });
       } else {
-        setStatus({ type: 'success', message: 'Pré-reserva recebida. Vamos abrir o WhatsApp com a mensagem pronta.' });
+        setStatus({ type: 'success', message: 'Pedido registado. A data só fica reservada após confirmação e pagamento do sinal.' });
       }
     }
 
-    openWhatsApp(buildWhatsAppMessage());
     setSubmitting(false);
   };
 
   return (
-    <section id="pre-reserva" className="py-20 px-4 bg-gradient-to-b from-white to-teal-50">
+    <section id="pre-reserva" className="py-20 px-4 bg-[#F0F8F4]">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-sm font-bold text-teal-700">
-            <CalendarDays className="h-4 w-4" /> Pré-reserva
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#378E85]">
+            <CalendarDays className="h-4 w-4" /> Pedido de disponibilidade
           </div>
-          <h2 className="mt-4 text-4xl font-bold text-gray-900">Vamos descobrir a melhor data para a sua festa</h2>
-          <p className="mt-3 text-lg text-gray-600">Diga-nos a data e o pack que prefere. Confirmamos as opções disponíveis antes de reservar.</p>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-[#29423D]">Vamos descobrir a melhor data para a sua festa</h2>
+          <p className="mt-3 text-base text-[#62766D]">Diga-nos a data e o pack que prefere. Confirmamos as opções disponíveis antes de reservar.</p>
         </div>
 
-        <form onSubmit={submit} className="grid gap-4 rounded-2xl border border-teal-100 bg-white p-5 md:p-8 shadow-lg" data-testid="reservation-form">
+        <form onSubmit={submit} className="grid gap-4 rounded-[2rem] border border-[#DCEBE4] bg-white p-6 md:p-10 shadow-sm" data-testid="reservation-form">
           <div className="grid md:grid-cols-2 gap-4">
             <Input placeholder="Nome do responsável" value={form.parent_name} onChange={(e) => update('parent_name', e.target.value)} required />
             <Input placeholder="Nome da criança" value={form.child_name} onChange={(e) => update('child_name', e.target.value)} />
@@ -93,9 +105,9 @@ const ReservationForm = ({ packages = [] }) => {
             <Input type="date" value={form.event_date} onChange={(e) => update('event_date', e.target.value)} />
             <select value={form.event_time} onChange={(e) => update('event_time', e.target.value)} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
               <option value="">Horário pretendido</option>
-              {timeSlots.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
+              {filteredTimeSlots.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
             </select>
-            <select value={form.package_name} onChange={(e) => update('package_name', e.target.value)} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
+            <select value={form.package_name} onChange={(e) => setForm(current => ({...current, package_name: e.target.value, event_time: ''}))} className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm">
               <option value="">Pacote pretendido</option>
               {packages.map((pkg) => <option key={pkg.id} value={pkg.name}>{pkg.name}</option>)}
               <option value="Ainda não sei">Ainda não sei</option>
@@ -108,7 +120,7 @@ const ReservationForm = ({ packages = [] }) => {
               {status.message}
             </p>
           )}
-          <Button type="submit" disabled={submitting} className="bg-green-600 hover:bg-green-700 text-white rounded-full py-6 text-base font-bold">
+          <Button type="submit" disabled={submitting} className="bg-[#378E85] hover:bg-[#2B766D] text-white rounded-full py-6 text-base font-bold">
             <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Pedir disponibilidade'}
           </Button>
         </form>
