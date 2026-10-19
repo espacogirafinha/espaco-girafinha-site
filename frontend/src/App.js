@@ -8,6 +8,7 @@ import LocalLanding from "./pages/LocalLanding";
 import GalleryPage from "./pages/GalleryPage";
 import FAQPage from "./pages/FAQPage";
 import ExternalServicesPage from "./pages/ExternalServicesPage";
+import CookieConsent from "./components/sections/CookieConsent";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/:slug" element={<LocalLanding />} />
         </Routes>
+        <CookieConsent />
       </BrowserRouter>
     </div>
   );
