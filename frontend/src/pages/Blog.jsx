@@ -71,15 +71,15 @@ const Blog = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
 
       {/* Hero */}
-      <section className="px-4 py-12 md:py-20 bg-gradient-to-br from-teal-50 via-yellow-50 to-pink-50">
+      <section className="px-4 py-12 md:py-20 bg-[#EFF8F4]">
         <div className="container mx-auto max-w-5xl text-center">
-          <Badge className="bg-teal-100 text-teal-700 hover:bg-teal-200 mb-4">📚 Blog</Badge>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight" data-testid="blog-page-title">
+          <Badge className="bg-[#DCF0E8] text-[#357A72] hover:bg-[#D3E9E2] mb-4">Dicas e inspiração</Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#29423D] mb-4 leading-tight" data-testid="blog-page-title">
             Dicas & Ideias para Festas Infantis
           </h1>
           <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-6"></div>
           <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
-            Tudo o que precisa de saber para organizar a festa perfeita — desde escolha de tema a checklists práticas, com a experiência de quem fez mais de 100 festas em Silves.
+            Ideias de temas, dicas e guias para preparar a próxima festa com mais tranquilidade.
           </p>
         </div>
       </section>
@@ -111,12 +111,12 @@ const Blog = () => {
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" /> {post.readTime}
                     </span>
-                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100 text-xs">
+                    <Badge variant="secondary" className="bg-[#FFF2DD] text-yellow-800 hover:bg-[#FFF2DD] text-xs">
                       {post.category}
                     </Badge>
                   </div>
                   <Link to={`/dicas/${post.slug}`} className="block group">
-                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-snug group-hover:text-teal-600 transition-colors">
+                    <h2 className="text-xl md:text-2xl font-bold text-[#29423D] mb-3 leading-snug group-hover:text-[#378E85] transition-colors">
                       {post.title}
                     </h2>
                   </Link>
@@ -126,7 +126,7 @@ const Blog = () => {
                   <Link
                     to={`/dicas/${post.slug}`}
                     data-testid={`blog-read-more-${post.slug}`}
-                    className="inline-flex items-center gap-2 text-teal-600 font-semibold hover:text-teal-700 transition-colors">
+                    className="inline-flex items-center gap-2 text-[#378E85] font-semibold hover:text-[#357A72] transition-colors">
                     Ler artigo <ArrowRight className="h-4 w-4" />
                   </Link>
                 </CardContent>
@@ -137,7 +137,7 @@ const Blog = () => {
       </section>
 
       {/* CTA */}
-      <section className="px-4 py-12 md:py-16 bg-gradient-to-r from-teal-500 to-teal-600 text-white">
+      <section className="px-4 py-12 md:py-16 bg-[#378E85] text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <h3 className="text-3xl md:text-4xl font-bold mb-4">Pronto para a festa dos sonhos?</h3>
           <p className="text-base md:text-lg mb-8 text-teal-50">
@@ -147,7 +147,7 @@ const Blog = () => {
             size="lg"
             onClick={openWhatsApp}
             data-testid="blog-cta-whatsapp"
-            className="bg-white text-teal-700 hover:bg-gray-100 px-8 py-6 text-lg rounded-full font-bold shadow-xl">
+            className="bg-white text-[#357A72] hover:bg-gray-100 px-8 py-6 text-lg rounded-full font-bold shadow-xl">
             <MessageCircle className="h-5 w-5 mr-2" /> Falar pelo WhatsApp
           </Button>
         </div>
