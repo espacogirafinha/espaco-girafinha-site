@@ -1,127 +1,85 @@
 import React from 'react';
-import { Check } from 'lucide-react';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { ArrowRight, Check, Clock3, Gift, MessageCircle } from 'lucide-react';
 import { buildPackageWhatsAppMessage, useWhatsApp } from '../../hooks/useWhatsApp';
 
 const Packages = ({ packages = [] }) => {
   const { openWhatsApp } = useWhatsApp();
 
   return (
-    <section id="pacotes" className="py-20 px-4 bg-gradient-to-b from-yellow-50 to-teal-50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Pacotes de Festas</h2>
-          <div className="w-24 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-sm md:text-xl text-gray-600 mb-2 whitespace-nowrap">Escolha o pacote perfeito para a festa do seu filho</p>
-          <p className="text-xs md:text-lg text-teal-600 font-bold animate-pulse mb-4 whitespace-nowrap">
-            ⚠️ Disponibilidade limitada — garanta já a sua data!
-          </p>
-          <p className="text-xs md:text-lg text-gray-700 font-semibold mb-2 whitespace-nowrap">
-            👇 Escolha o pack ideal para a festa do seu filho
+    <section id="pacotes" className="bg-[#F5FAF8] px-4 py-20 md:py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.17em] text-[#468F85]">Festas à sua medida</p>
+          <h2 className="text-3xl font-bold tracking-tight text-[#29423D] md:text-5xl">Escolha como quer celebrar</h2>
+          <p className="mt-5 text-base leading-relaxed text-[#61766F] md:text-lg">
+            Todos os packs incluem espaço exclusivo, diversão no playground, acompanhamento de um monitor e lanche para as crianças.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {packages.map((pkg) => (
-            <Card
-              key={pkg.id}
-              data-testid={`package-card-${pkg.id}`}
-              className={`relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-                pkg.popular ? 'border-3 border-teal-500 shadow-xl bg-white' : 'border border-gray-200 bg-white'
-              }`}>
-              {pkg.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-teal-500 text-white text-center py-2 text-sm font-bold">
-                  ⭐ MAIS POPULAR
-                </div>
-              )}
-              {pkg.isPromotion && (
-                <div className={`${pkg.popular ? 'mt-10' : 'mt-0'} bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-2 px-4 text-sm font-bold`}>
-                  🎉 Promoção Especial de 1º Aniversário
-                </div>
-              )}
-
-              <CardHeader className={pkg.popular && pkg.isPromotion ? 'pt-4' : pkg.popular ? 'pt-12' : pkg.isPromotion ? 'pt-4' : 'pt-6'}>
-                <CardTitle className="text-2xl font-bold text-gray-900 mb-3">{pkg.name}</CardTitle>
-
-                <div className="mb-4">
-                  {pkg.isPromotion && pkg.originalPrice && (
-                    <div className="mb-2">
-                      <span className="text-lg text-gray-400 line-through font-medium">{pkg.originalPrice}</span>
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
+          {packages.map((pkg) => {
+            const isPremium = /premium/i.test(pkg.name);
+            const isMorningOffer = /essencial/i.test(pkg.name) && /manh/i.test(pkg.name);
+            const hasCampaign = isPremium || isMorningOffer;
+            return (
+              <article
+                key={pkg.id}
+                data-testid={`package-card-${pkg.id}`}
+                className={`flex h-full flex-col overflow-hidden rounded-[1.9rem] border bg-white shadow-sm transition-shadow hover:shadow-lg ${isPremium ? 'border-[#E7B7C5]' : 'border-[#DCEAE6]'}`}>
+                <div className="flex-1 px-6 pb-5 pt-7 md:px-8">
+                  {hasCampaign && (
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#FCEAF0] px-3 py-1.5 text-xs font-bold text-[#A94D6A]">
+                      <Gift className="h-3.5 w-3.5" /> {isPremium ? 'Oferta do bolo personalizado' : 'Preço especial de manhã'}
                     </div>
                   )}
-                  <div className="text-4xl font-bold text-teal-600">{pkg.price}</div>
-                  {pkg.isPromotion && (
-                    <p className="text-xs text-teal-600 font-semibold mt-2">
-                      ⏰ Aproveite esta oferta por tempo limitado
-                    </p>
-                  )}
-                </div>
-
-                <div className="bg-teal-50 rounded-lg p-3 mb-4">
-                  {(pkg.schedules ?? []).map((schedule, index) => (
-                    <p key={index} className="text-sm font-semibold text-gray-700">{schedule}</p>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 rounded-lg px-3 py-2 mb-4">
-                  <span className="text-green-700 font-bold text-sm">✅ Reserva Flexível</span>
-                  <span className="text-green-600 text-xs">• Sinal de apenas 20%</span>
-                </div>
-              </CardHeader>
-
-              <CardContent>
-                <div className="border-t border-gray-200 mb-4"></div>
-
-                <div className="mb-4">
-                  <p className="text-xs font-bold text-gray-800 uppercase tracking-wide mb-3">Inclui:</p>
-                  <ul className="space-y-2">
-                    {(pkg.includes ?? []).map((item, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span className="leading-tight">{item}</span>
+                  <h3 className="text-2xl font-bold tracking-tight text-[#29423D]">{pkg.name}</h3>
+                  <div className="mt-3 flex items-baseline gap-3">
+                    <strong className="text-4xl font-bold tracking-tight text-[#337F76]">{pkg.price}</strong>
+                    {pkg.isPromotion && pkg.originalPrice && (
+                      <span className="text-base text-[#87968E] line-through">{pkg.originalPrice}</span>
+                    )}
+                  </div>
+                  <div className="mt-5 flex flex-col gap-2 rounded-2xl bg-[#F3F9F7] p-4">
+                    {(pkg.schedules || []).map((schedule, i) => (
+                      <p key={i} className="flex items-start gap-2 text-sm font-medium leading-relaxed text-[#527269]">
+                        <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-[#438B82]" /> {schedule}
+                      </p>
+                    ))}
+                  </div>
+                  <ul className="mt-6 space-y-3">
+                    {(pkg.includes || []).map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-[#566D66]">
+                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#4E9F95]" /> {item}
                       </li>
                     ))}
                   </ul>
+                  {(pkg.extras || []).length > 0 && (
+                    <div className="mt-6 rounded-2xl bg-[#FFF9ED] p-4">
+                      {(pkg.extras || []).map((extra, i) => (
+                        <p key={i} className="text-sm font-semibold leading-relaxed text-[#786B51]">{extra}</p>
+                      ))}
+                    </div>
+                  )}
                 </div>
-
-                {pkg.extras && pkg.extras.length > 0 && (
-                  <div className="mb-4 bg-yellow-50 rounded-lg p-3">
-                    <p className="text-xs font-bold text-gray-800 uppercase tracking-wide mb-2">Extras:</p>
-                    <ul className="space-y-1">
-                      {pkg.extras.map((extra, index) => (
-                        <li key={index} className="text-sm text-gray-700 font-semibold">• {extra}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {pkg.notes && pkg.notes.length > 0 && (
-                  <div className="mb-6 border-t border-gray-200 pt-4">
-                    <p className="text-xs font-bold text-gray-800 uppercase tracking-wide mb-2">Notas:</p>
-                    <ul className="space-y-1.5">
-                      {pkg.notes.map((note, index) => (
-                        <li key={index} className="text-xs text-gray-600 leading-relaxed">• {note}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                <Button
-                  data-testid={`package-cta-${pkg.id}`}
-                  className={`w-full text-white rounded-full font-semibold py-6 ${
-                    pkg.popular ? 'bg-teal-600 hover:bg-teal-700 shadow-lg' : 'bg-teal-500 hover:bg-teal-600'
-                  }`}
-                  onClick={() => openWhatsApp(buildPackageWhatsAppMessage(pkg.name))}>
-                  💬 Saber disponibilidade
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                <div className="border-t border-[#EAF0ED] px-6 pb-7 pt-5 md:px-8">
+                  <p className="mb-4 text-xs leading-relaxed text-[#7A8A82]">
+                    Sinal de 20% para reservar. Restante pagamento no dia do evento.
+                  </p>
+                  <button
+                    type="button"
+                    data-testid={`package-cta-${pkg.id}`}
+                    onClick={() => openWhatsApp(buildPackageWhatsAppMessage(pkg.name))}
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#378E85] px-5 py-3 font-semibold text-white transition hover:bg-[#2C756D]">
+                    <MessageCircle className="h-4 w-4" /> Pedir disponibilidade <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
         </div>
-
-        <div className="text-center mt-12">
-          <p className="text-sm text-gray-600">Todos os preços incluem IVA à taxa legal em vigor.</p>
+        <div className="mx-auto mt-9 max-w-4xl rounded-2xl border border-[#E7E2D5] bg-[#FFF9ED] p-5 text-center text-sm leading-relaxed text-[#6D6D5B]">
+          <p>As campanhas do Pack Essencial de manhã e do Pack Premium são exclusivas para festas <strong>realizadas até 31 de dezembro de 2026</strong>.</p>
+          <p className="mt-2">Hora extra: +70 € · Valores com IVA incluído · Todas as reservas estão sujeitas à disponibilidade.</p>
         </div>
       </div>
     </section>
