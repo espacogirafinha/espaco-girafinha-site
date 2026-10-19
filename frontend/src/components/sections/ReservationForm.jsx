@@ -60,29 +60,49 @@ const ReservationForm = ({ packages = [] }) => {
 
   const submit = async (event) => {
     event.preventDefault();
+    if (submitting) return;
+
     setSubmitting(true);
     setStatus({ type: '', message: '' });
 
-    // Abrir WhatsApp diretamente da interação evita bloqueio de popup
-    // enquanto a gravação do lead decorre.
+    // Abrir primeiro o WhatsApp, diretamente após o clique, para evitar
+    // bloqueadores de janelas. A abertura não significa que o lead foi gravado.
     openWhatsApp(buildWhatsAppMessage());
 
-    if (isSupabaseConfigured) {
-      const payload = {
-        ...form,
-        guests_count: form.guests_count ? Number(form.guests_count) : null,
-        event_date: form.event_date || null,
-        status: 'novo',
-      };
-      const { error } = await supabase.from('reservation_leads').insert(payload);
-      if (error) {
-        setStatus({ type: 'error', message: 'Não foi possível guardar o pedido no site. Por favor, conclua o contacto no WhatsApp que abriu.' });
-      } else {
-        setStatus({ type: 'success', message: 'Pedido registado. A data só fica reservada após confirmação e pagamento do sinal.' });
-      }
+    if (!isSupabaseConfigured) {
+      setStatus({
+        type: 'error',
+        message: 'O WhatsApp foi aberto, mas este formulário não está ligado ao registo de pedidos. Envie a mensagem pelo WhatsApp para concluir o contacto.'
+      });
+      setSubmitting(false);
+      return;
     }
 
-    setSubmitting(false);
+    const payload = {
+      ...form,
+      guests_count: form.guests_count ? Number(form.guests_count) : null,
+      event_date: form.event_date || null,
+      status: 'novo',
+      source: 'website',
+    };
+
+    try {
+      const { error } = await supabase.from('reservation_leads').insert(payload);
+      if (error) throw error;
+
+      setStatus({
+        type: 'success',
+        message: 'Pedido de disponibilidade registado com sucesso! Entraremos em contacto para confirmar as opções. A data só fica reservada após confirmação e pagamento do sinal de 20%.'
+      });
+    } catch (error) {
+      console.error('Falha ao registar pedido de disponibilidade:', error);
+      setStatus({
+        type: 'error',
+        message: 'O WhatsApp foi aberto, mas não conseguimos registar o pedido no site. Envie a mensagem pelo WhatsApp para garantir que o recebemos.'
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -115,17 +135,24 @@ const ReservationForm = ({ packages = [] }) => {
             <Input type="number" aria-label="Número estimado de convidados" min="1" placeholder="Nº estimado de convidados" value={form.guests_count} onChange={(e) => update('guests_count', e.target.value)} />
           </div>
           <Textarea aria-label="Mensagem com tema, idade e detalhes da festa" placeholder="Tema, idade, dúvidas ou detalhes importantes" rows={3} value={form.message} onChange={(e) => update('message', e.target.value)} />
-          {status.message && (
-            <p className={`rounded-md p-3 text-sm ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
-              {status.message}
-            </p>
-          )}
           <p className="text-xs leading-relaxed text-[#68796E]">
             Utilizamos os dados indicados apenas para responder ao seu pedido e organizar o contacto. Consulte a nossa Política de Privacidade no rodapé do site. O envio não confirma a reserva.
           </p>
           <Button type="submit" disabled={submitting} className="bg-[#378E85] hover:bg-[#2B766D] text-white rounded-full py-5 text-sm font-bold md:py-6 md:text-base">
             <MessageCircle className="h-5 w-5 mr-2" /> {submitting ? 'A enviar...' : 'Pedir disponibilidade'}
           </Button>
+          {status.message && (
+            <div
+              role={status.type === 'error' ? 'alert' : 'status'}
+              aria-live={status.type === 'error' ? 'assertive' : 'polite'}
+              data-testid="reservation-form-result"
+              className={`rounded-xl border p-4 text-sm font-medium leading-relaxed ${status.type === 'error'
+                ? 'border-red-200 bg-red-50 text-red-800'
+                : 'border-[#B7DED4] bg-[#EBF7F1] text-[#285B50]'}`}
+            >
+              {status.message}
+            </div>
+          )}
         </form>
       </div>
     </section>
