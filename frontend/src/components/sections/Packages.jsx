@@ -10,7 +10,7 @@ const Packages = ({ packages = [] }) => {
       <div className="container mx-auto max-w-6xl">
         <div className="mx-auto mb-7 max-w-3xl text-center md:mb-12">
           <p className="mb-2 text-xs font-bold uppercase md:mb-3 md:text-sm tracking-[0.17em] text-[#468F85]">Festas à sua medida</p>
-          <h2 className="text-xl font-bold tracking-tight text-[#29423D] md:text-2xl sm:text-3xl md:text-5xl">Escolha como quer celebrar</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-[#29423D] sm:text-3xl md:text-5xl">Escolha como quer celebrar</h2>
           <p className="mt-3 text-sm leading-relaxed text-[#61766F] md:mt-5 md:text-lg">
             Todos os packs incluem espaço exclusivo, diversão no playground, acompanhamento de um monitor e lanche para as crianças.
           </p>
