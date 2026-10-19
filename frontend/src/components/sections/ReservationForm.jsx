@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { useWhatsApp } from '../../hooks/useWhatsApp';
+import { trackReservationLead } from '../../lib/analytics';
 
 const timeSlots = [
   'Essencial manhã · 10h30–13h00',
@@ -93,6 +94,16 @@ const ReservationForm = ({ packages = [] }) => {
     try {
       const { error } = await supabase.from('reservation_leads').insert(payload);
       if (error) throw error;
+
+      // Registo concluído com sucesso: mede o lead apenas com consentimento.
+      // Não enviar telefone, nome, email, nome da criança ou mensagem ao GA4.
+      // Se a medição falhar, isso nunca deve impedir a confirmação ao cliente.
+      try {
+        trackReservationLead(form.package_name);
+      } catch (trackingError) {
+        console.warn('Não foi possível registar o evento de análise:', trackingError);
+      }
+
       setStatus({
         type: 'success',
         message: 'Recebemos o seu pedido. Vamos entrar em contacto para confirmar a disponibilidade.'
