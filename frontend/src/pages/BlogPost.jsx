@@ -142,7 +142,7 @@ const BlogPost = () => {
 
       {/* Hero image + title */}
       <article className="container mx-auto max-w-4xl px-4 pb-12">
-        <div className="aspect-[16/9] rounded-3xl overflow-hidden shadow-xl mb-8 bg-gray-100">
+        <div className="aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-[#DCEAE4] bg-[#EDF5F0] shadow-sm mb-6 md:mb-8">
           <img src={post.image} alt={post.imageAlt} className="w-full h-full object-cover" />
         </div>
 
@@ -156,11 +156,11 @@ const BlogPost = () => {
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#29423D] mb-6 leading-tight" data-testid="post-title">
+        <h1 className="mb-4 text-2xl font-bold leading-tight tracking-tight text-[#29423D] sm:text-3xl lg:text-4xl" data-testid="post-title">
           {post.title}
         </h1>
 
-        <p className="text-lg text-gray-700 mb-8 leading-relaxed italic border-l-4 border-[#378E85] pl-4">
+        <p className="mb-6 border-l-4 border-[#378E85] pl-4 text-base italic leading-relaxed text-[#61766D] md:text-lg">
           {post.excerpt}
         </p>
 
@@ -184,7 +184,7 @@ const BlogPost = () => {
         )}
 
         {/* Share buttons */}
-        <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-5 md:p-6">
+        <div className="mt-7 rounded-[1.5rem] border border-[#DCEAE4] bg-white p-5 md:p-6">
           <div className="flex items-center gap-2 mb-4">
             <Share2 className="h-5 w-5 text-[#378E85]" />
             <h3 className="text-base md:text-lg font-bold text-[#29423D]">Gostou? Partilhe com outros pais!</h3>
@@ -193,7 +193,7 @@ const BlogPost = () => {
             <button
               onClick={shareWhatsApp}
               data-testid="share-whatsapp-button"
-              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-sm">
+              className="inline-flex items-center gap-2 bg-[#378E85] hover:bg-[#2B756D] text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-sm">
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </button>
             <button
@@ -216,7 +216,7 @@ const BlogPost = () => {
         </div>
 
         {/* Inline CTA */}
-        <div className="mt-10 bg-[#EDF7F2] rounded-2xl p-6 md:p-8 text-center">
+        <div className="mt-8 rounded-[1.5rem] bg-[#E9F6F0] p-5 text-center md:p-8">
           <h3 className="text-2xl font-bold text-[#29423D] mb-3">Gostou destas dicas?</h3>
           <p className="text-gray-700 mb-6">
             Fale connosco e ajudamos a transformar estas ideias numa festa inesquecível.
@@ -225,7 +225,7 @@ const BlogPost = () => {
             size="lg"
             onClick={openPostWhatsApp}
             data-testid="post-cta-whatsapp"
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-base rounded-full font-bold shadow-lg">
+            className="bg-[#378E85] hover:bg-[#2B756D] text-white px-7 py-3 text-sm md:text-base rounded-full font-bold shadow-sm">
             <MessageCircle className="h-5 w-5 mr-2" /> Pedir Orçamento
           </Button>
         </div>
