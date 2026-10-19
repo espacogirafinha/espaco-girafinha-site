@@ -1,66 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Home, Sparkles } from 'lucide-react';
-import { Button } from '../ui/button';
-import { Card, CardContent } from '../ui/card';
-
 const options = [
-  {
-    title: 'Festas no nosso espaço',
-    description:
-      'Celebre no nosso espaço para festas infantis em Silves, com ambiente privado, animação, decoração e opções de catering.',
-    icon: Home,
-    cta: 'Ver pacotes',
-    href: '/#pacotes',
-  },
-  {
-    title: 'Serviços externos para o seu evento',
-    description:
-      'Se já tem local, levamos serviços para festas no Algarve: catering, decorações personalizadas, mascotes e insufláveis.',
-    icon: Sparkles,
-    cta: 'Conhecer serviços externos',
-    href: '/servicos-externos',
-  },
+  { title: 'Festas no nosso espaço', body: 'Playground, lanche e acompanhamento num espaço exclusivo em Silves. Escolha o seu pack e viva a festa com tranquilidade.', label: 'Conhecer os packs', href: '#pacotes', icon: Home, tone: 'bg-[#EDF8F3]' },
+  { title: 'Serviços no seu local', body: 'Já tem o espaço? Levamos catering, decorações, mascotes e insufláveis até ao local do seu evento, sujeito a disponibilidade.', label: 'Explorar serviços', href: '/servicos-externos', icon: Sparkles, tone: 'bg-[#FFF3F4]' },
 ];
-
 const ServiceOptions = () => (
-  <section className="px-4 py-14 bg-white">
+  <section className="bg-white px-4 py-16 md:py-20">
     <div className="container mx-auto max-w-6xl">
-      <div className="text-center mb-10">
-        <p className="text-sm font-bold uppercase tracking-wide text-teal-600 mb-3">Duas formas de celebrar</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Escolha como quer preparar a festa</h2>
-        <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-          Organizamos festas infantis em Silves no nosso espaço ou levamos serviços externos ao local do seu evento.
-        </p>
+      <div className="mb-10 text-center">
+        <p className="text-sm font-bold uppercase tracking-[0.17em] text-[#43887F]">Duas formas de celebrar</p>
+        <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#29423D] md:text-4xl">A festa que imaginou, à sua maneira.</h2>
       </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {options.map((option) => {
-          const Icon = option.icon;
-
-          return (
-            <Card key={option.title} className="h-full border-2 border-teal-100 bg-gradient-to-br from-white to-teal-50 shadow-md">
-              <CardContent className="p-6 md:p-8">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-yellow-100 text-teal-700">
-                  <Icon className="h-7 w-7" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">{option.title}</h3>
-                <p className="mt-3 text-gray-600 leading-relaxed">{option.description}</p>
-                <Button
-                  asChild
-                  className="mt-6 rounded-full bg-teal-600 px-6 py-5 font-semibold text-white hover:bg-teal-700">
-                  <Link to={option.href}>
-                    {option.cta}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          );
+      <div className="grid gap-5 md:grid-cols-2">
+        {options.map((item) => {
+          const Icon = item.icon;
+          return <article key={item.title} className={item.tone + ' flex flex-col rounded-[1.8rem] p-7 md:p-10'}>
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-[#378E85]"><Icon className="h-7 w-7" strokeWidth={1.7}/></div>
+            <h3 className="mt-6 text-2xl font-bold text-[#29423D]">{item.title}</h3>
+            <p className="mt-3 flex-1 text-base leading-relaxed text-[#63766E]">{item.body}</p>
+            <a href={item.href} className="mt-7 inline-flex items-center gap-2 font-bold text-[#347F76] hover:underline">{item.label}<ArrowRight className="h-5 w-5"/></a>
+          </article>;
         })}
       </div>
     </div>
   </section>
 );
-
 export default ServiceOptions;
