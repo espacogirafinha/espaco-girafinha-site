@@ -135,7 +135,7 @@ const BlogPost = () => {
         <Link
           to="/dicas"
           data-testid="back-to-blog-link"
-          className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold mb-6">
+          className="inline-flex items-center gap-2 text-[#378E85] hover:text-[#357A72] font-semibold mb-6">
           <ArrowLeft className="h-4 w-4" /> Voltar ao blog
         </Link>
       </div>
@@ -147,7 +147,7 @@ const BlogPost = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
-          <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">{post.category}</Badge>
+          <Badge className="bg-[#FFF2DD] text-yellow-800 hover:bg-[#FFF2DD]">{post.category}</Badge>
           <span className="flex items-center gap-1">
             <Calendar className="h-4 w-4" /> {formatDate(post.date)}
           </span>
@@ -156,18 +156,18 @@ const BlogPost = () => {
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight" data-testid="post-title">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#29423D] mb-6 leading-tight" data-testid="post-title">
           {post.title}
         </h1>
 
-        <p className="text-lg text-gray-700 mb-8 leading-relaxed italic border-l-4 border-teal-500 pl-4">
+        <p className="text-lg text-gray-700 mb-8 leading-relaxed italic border-l-4 border-[#378E85] pl-4">
           {post.excerpt}
         </p>
 
         {/* Article content */}
         <div
           data-testid="post-content"
-          className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-li:leading-relaxed prose-strong:text-teal-700 prose-a:text-teal-600 prose-ul:my-4"
+          className="prose prose-lg max-w-none prose-headings:text-[#29423D] prose-headings:font-bold prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 prose-li:leading-relaxed prose-strong:text-[#357A72] prose-a:text-[#378E85] prose-ul:my-4"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
@@ -176,7 +176,7 @@ const BlogPost = () => {
           <div className="flex flex-wrap items-center gap-2 mt-10 pt-6 border-t border-gray-200">
             <Tag className="h-4 w-4 text-gray-500" />
             {post.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="bg-teal-50 text-teal-700 hover:bg-teal-50">
+              <Badge key={tag} variant="secondary" className="bg-teal-50 text-[#357A72] hover:bg-teal-50">
                 {tag}
               </Badge>
             ))}
@@ -186,8 +186,8 @@ const BlogPost = () => {
         {/* Share buttons */}
         <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-5 md:p-6">
           <div className="flex items-center gap-2 mb-4">
-            <Share2 className="h-5 w-5 text-teal-600" />
-            <h3 className="text-base md:text-lg font-bold text-gray-900">Gostou? Partilhe com outros pais!</h3>
+            <Share2 className="h-5 w-5 text-[#378E85]" />
+            <h3 className="text-base md:text-lg font-bold text-[#29423D]">Gostou? Partilhe com outros pais!</h3>
           </div>
           <div className="flex flex-wrap gap-3">
             <button
@@ -207,7 +207,7 @@ const BlogPost = () => {
               data-testid="share-copy-link-button"
               className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold transition-colors border ${
                 copied
-                  ? 'bg-teal-50 text-teal-700 border-teal-300'
+                  ? 'bg-teal-50 text-[#357A72] border-teal-300'
                   : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
               }`}>
               <Share2 className="h-4 w-4" /> {copied ? 'Link copiado!' : 'Copiar link'}
@@ -216,8 +216,8 @@ const BlogPost = () => {
         </div>
 
         {/* Inline CTA */}
-        <div className="mt-10 bg-gradient-to-br from-teal-50 to-yellow-50 rounded-2xl p-6 md:p-8 text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">Gostou destas dicas?</h3>
+        <div className="mt-10 bg-[#EDF7F2] rounded-2xl p-6 md:p-8 text-center">
+          <h3 className="text-2xl font-bold text-[#29423D] mb-3">Gostou destas dicas?</h3>
           <p className="text-gray-700 mb-6">
             Fale connosco e ajudamos a transformar estas ideias numa festa inesquecível.
           </p>
@@ -235,7 +235,7 @@ const BlogPost = () => {
       {related.length > 0 && (
         <section className="px-4 py-12 md:py-16 bg-white">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#29423D] mb-8 text-center">
               Outros artigos que pode gostar
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -246,10 +246,10 @@ const BlogPost = () => {
                       <img src={p.image} alt={p.imageAlt} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                     </div>
                     <CardContent className="p-5">
-                      <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100 text-xs mb-2">
+                      <Badge variant="secondary" className="bg-[#FFF2DD] text-yellow-800 hover:bg-[#FFF2DD] text-xs mb-2">
                         {p.category}
                       </Badge>
-                      <h3 className="text-lg font-bold text-gray-900 leading-snug hover:text-teal-600 transition-colors">
+                      <h3 className="text-lg font-bold text-[#29423D] leading-snug hover:text-[#378E85] transition-colors">
                         {p.title}
                       </h3>
                     </CardContent>
