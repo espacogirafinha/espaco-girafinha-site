@@ -30,7 +30,7 @@ const Testimonials = ({ testimonials = [] }) => {
             const full = Boolean(expanded[key]);
             const rating = Number.isFinite(Number(t.rating)) ? Math.min(5, Math.max(0, Math.floor(Number(t.rating)))) : 0;
             const text = String(t.text || '');
-            const mayNeedExpand = text.length > 95;
+            const mayNeedExpand = text.length > 70;
 
             return (
               <article
