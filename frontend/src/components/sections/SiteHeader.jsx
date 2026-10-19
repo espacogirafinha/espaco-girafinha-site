@@ -18,9 +18,9 @@ const SiteHeader = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#E6EEE9] bg-[#FFFEFC]/95 backdrop-blur-md">
-      <div className="container mx-auto flex min-h-[78px] max-w-7xl items-center justify-between gap-6 px-4">
+      <div className="container mx-auto flex min-h-[66px] md:min-h-[76px] max-w-7xl items-center justify-between gap-4 px-4">
         <a href="/" className="flex shrink-0 items-center gap-3" aria-label="Espaço Girafinha, início">
-          <img src="/Logotipo girafinha  (1).png" alt="Logótipo do Espaço Girafinha" className="h-14 w-auto object-contain" />
+          <img src="/Logotipo girafinha  (1).png" alt="Logótipo do Espaço Girafinha" className="h-11 w-auto object-contain md:h-14" />
           <div className="hidden sm:block">
             <div className="text-lg font-semibold tracking-tight text-[#367F76]">Espaço Girafinha</div>
             <p className="text-xs text-[#8C9A92]">Festas infantis · Silves</p>
@@ -44,7 +44,7 @@ const SiteHeader = () => {
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#CFE8E2] bg-white text-[#367F76] xl:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#CFE8E2] bg-white text-[#367F76] xl:hidden"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
