@@ -38,7 +38,7 @@ const Hero = () => (
       </div>
 
       <div className="relative mx-auto w-full max-w-[530px]">
-        <div aria-hidden="true" className="absolute -inset-2 rotate-[2deg] rounded-[2rem] md:-inset-5 md:rounded-[2.7rem] bg-[#F5D7DF] md:-inset-5" />
+        <div aria-hidden="true" className="absolute -inset-2 rotate-[2deg] rounded-[2rem] bg-[#F5D7DF] md:-inset-5 md:rounded-[2.7rem]" />
         <img
           src="/hero-party.jpg"
           alt="Espaço Girafinha preparado para uma festa infantil"
