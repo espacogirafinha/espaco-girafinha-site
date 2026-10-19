@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Check, MapPin, MessageCircle } from 'lucide-react';
 import SiteHeader from '../components/sections/SiteHeader';
 import SiteFooter from '../components/sections/SiteFooter';
 import FloatingWhatsApp from '../components/sections/FloatingWhatsApp';
+import { PrivacyModal, TermsModal } from '../components/sections/LegalModals';
 import { useWhatsApp } from '../hooks/useWhatsApp';
 import { localBusinessSchema, setPageMeta, siteUrl } from '../lib/seo';
 
@@ -41,6 +42,8 @@ const faqs = [
 
 const ExternalServicesPage = () => {
   const { openWhatsApp } = useWhatsApp();
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
   useEffect(() => {
     setPageMeta({
       title: 'Serviços Externos para Festas e Eventos | Espaço Girafinha',
@@ -144,7 +147,9 @@ const ExternalServicesPage = () => {
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter onOpenPrivacy={() => setPrivacyOpen(true)} onOpenTerms={() => setTermsOpen(true)} />
+      <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
+      <TermsModal open={termsOpen} onClose={() => setTermsOpen(false)} />
       <FloatingWhatsApp />
     </div>
   );
