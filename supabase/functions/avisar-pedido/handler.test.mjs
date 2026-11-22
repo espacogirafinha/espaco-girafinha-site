@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {handleRequest} from './handler.mjs';
+const env={SUPABASE_SERVICE_ROLE_KEY:'test-service',RESEND_API_KEY:'test-resend'};
+const payload={type:'INSERT',schema:'public',table:'reservation_leads',record:{id:42,parent_name:'private data'}};
+const request=(body=payload,auth='Bearer test-service')=>new Request('https://example.com',{method:'POST',headers:{authorization:auth},body:JSON.stringify(body)});
+test('refuses public credentials before sending',async()=>{let calls=0;const r=await handleRequest(request(payload,'Bearer public'),env,async()=>{calls++});assert.equal(r.status,401);assert.equal(calls,0)});
+test('rejects unrelated requests',async()=>{const r=await handleRequest(request({...payload,table:'other'}),env);assert.equal(r.status,400)});
+test('sends a private notification with a stable idempotency key',async()=>{let sent;const r=await handleRequest(request(),env,async(u,o)=>{sent=o;return new Response('{}',{status:200})});assert.equal(r.status,200);assert.equal(sent.headers['Idempotency-Key'],'girafinha-reserva-42');assert(!sent.body.includes('private data'));assert.equal(JSON.parse(sent.body).to[0],'espacogirafinha@gmail.com')});
+test('reports failures rather than claiming delivery',async()=>{const r=await handleRequest(request(),env,async()=>new Response('{}',{status:429}));assert.equal(r.status,502)});
