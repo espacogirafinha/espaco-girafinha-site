@@ -1,8 +1,11 @@
 export async function handleRequest(req, env, fetcher = fetch) {
   if (req.method !== 'POST') return new Response('Method not allowed', {status:405});
-  const authorization = req.headers.get('authorization') || '';
-  const secret = env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!secret || authorization !== `Bearer ${secret}`) return new Response('Unauthorized', {status:401});
+  const supplied = req.headers.get('x-alert-token') || '';
+  const secret = env.GIRAFINHA_WEBHOOK_TOKEN || '';
+  if (!/^[0-9a-f]{64}$/.test(secret) || !/^[0-9a-f]{64}$/.test(supplied)) return new Response('Unauthorized', {status:401});
+  let mismatch = 0;
+  for (let i = 0; i < 64; i++) mismatch |= supplied.charCodeAt(i) ^ secret.charCodeAt(i);
+  if (mismatch !== 0) return new Response('Unauthorized', {status:401});
   let body;
   try { body = await req.json(); } catch { return new Response('Bad request', {status:400}); }
   if (body?.type !== 'INSERT' || body?.schema !== 'public' || body?.table !== 'reservation_leads' || !Number.isSafeInteger(body?.record?.id) || body.record.id <= 0) return new Response('Bad request', {status:400});
